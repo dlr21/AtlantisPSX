@@ -25,14 +25,20 @@ public class Search : MonoBehaviour
 
     private bool activado = false;
 
+
+    [Header("En zona")]
     public bool enZona = false;
 
 
     // Update is called once per frame
     void Update()
     {
+
         if (!activado && enZona)
         {
+
+            GameObject.Find("exclama").gameObject.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+
             if (Input.GetKey(select))
             {
                 update = false;
@@ -47,6 +53,7 @@ public class Search : MonoBehaviour
                     radialIndicator.enabled = false;
                     myevent.Invoke();
                     activado = true;
+                    GameObject.Find("exclama").gameObject.transform.localScale = new Vector3(0, 0, 0);
                 }
 
             }

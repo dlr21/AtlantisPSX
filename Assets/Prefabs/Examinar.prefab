@@ -61,7 +61,7 @@ MonoBehaviour:
   indicatorTimer: 0
   maxindicatorTimer: 1
   radialIndicator: {fileID: 0}
-  select: 32
+  select: 13
   myevent:
     m_PersistentCalls:
       m_Calls:

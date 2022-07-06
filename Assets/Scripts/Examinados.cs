@@ -13,6 +13,9 @@ public class Examinados : MonoBehaviour
         Debug.Log("abrimos trampilla");
     }
 
-
+    public void lvl1_puerta_piscina()
+    {
+        Debug.Log("hace falta USAR una llave");
+    }
 
 }
