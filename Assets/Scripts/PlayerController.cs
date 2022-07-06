@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Velocidades")]
-    public float playerSpeed;
+    public float playerWalkSpeed;
+    public float playerRunSpeed;
+    [SerializeField] private float playerSpeed;
     public float gravity;
     public float jumpForce;
     [SerializeField] private float fallSpeed;
@@ -26,10 +28,13 @@ public class PlayerController : MonoBehaviour
     [Header("Animaciones")]
     [SerializeField] private Animator playerAnimatorController;
 
+    public bool running;
+
     private void Start()
     {
         player = GetComponent<CharacterController>();
         playerAnimatorController = GetComponent<Animator>();
+        running = false;
     }
 
     private void Update()
@@ -39,11 +44,14 @@ public class PlayerController : MonoBehaviour
 
         Move();
 
-        Debug.Log(player.velocity.magnitude);
+        //Debug.Log(player.velocity.magnitude);
     }
 
     //movimiento con arreglo diagonal
     private void Inputs() {
+
+        isRunning();
+
         horizontalMove = Input.GetAxis("Horizontal");
         verticalMove = Input.GetAxis("Vertical");
 
@@ -52,6 +60,19 @@ public class PlayerController : MonoBehaviour
 
         //animacion de que hacemos segun la velocidad
         playerAnimatorController.SetFloat("playerWalkVelocity", playerInput.magnitude * playerSpeed);
+    }
+
+    void isRunning() {
+        if (running && Input.GetButtonDown("Fire3"))
+        {
+            running = false;
+            playerSpeed = playerWalkSpeed;
+        }
+        else if (!running && Input.GetButtonDown("Fire3"))
+        {
+            running = true;
+            playerSpeed = playerRunSpeed;
+        }
     }
 
   
