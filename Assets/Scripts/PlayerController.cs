@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour
     [Header("Animaciones")]
     [SerializeField] private Animator playerAnimatorController;
 
+    [Header("Agarre")]
+    [SerializeField] private bool colgando = false;
+
+
     public bool running;
 
     private void Start()
@@ -56,7 +60,7 @@ public class PlayerController : MonoBehaviour
         verticalMove = Input.GetAxis("Vertical");
 
         playerInput = new Vector3(horizontalMove, 0, verticalMove);
-        playerInput = Vector3.ClampMagnitude(playerInput,1);
+        playerInput = Vector3.ClampMagnitude(playerInput, 1);
 
         //animacion de que hacemos segun la velocidad
         playerAnimatorController.SetFloat("playerWalkVelocity", playerInput.magnitude * playerSpeed);
@@ -75,10 +79,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-  
+
     private void Move()
-    {       
-        
+    {
+        if (colgando) {
+
+            if (playerInput.z > 0)
+            {
+
+                Climb();
+
+            }
+            else if (playerInput.z < 0) {
+                //playerAnimatorController.SetTrigger("playerClimb"); FALL
+            }
+
+
+        }
         //movimiento en referencia a la camara
         playerMove = (playerInput.x * camRight + playerInput.z * camForward) * playerSpeed;
         //mover personaje a donde mire
@@ -89,8 +106,11 @@ public class PlayerController : MonoBehaviour
         player.Move(playerMove * Time.deltaTime);
     }
 
+    private void Climb(){
 
+    playerAnimatorController.SetTrigger("playerClimb");
 
+    }
 
     //direccion de la que mira la camara
     private void camDirection()
@@ -114,7 +134,14 @@ public class PlayerController : MonoBehaviour
 
     //fuerza hacia abajo estando en el suelo y aceleracion de gravedad estando en el aire
     private void SetGravity() {
+
         
+        if (colgando)
+        {
+            fallSpeed = 0;
+            playerMove.y = fallSpeed;
+        }
+        else 
         if (player.isGrounded)
         {
             fallSpeed = -gravity*Time.deltaTime;
@@ -126,6 +153,7 @@ public class PlayerController : MonoBehaviour
             //animacion de que hacemos segun la velocidad en el aire
             playerAnimatorController.SetFloat("playerVerticalVelocity", player.velocity.y);
         }
+        playerAnimatorController.SetBool("colgando", colgando);
         playerAnimatorController.SetBool("isGrounded", player.isGrounded);
     }
 
@@ -136,6 +164,10 @@ public class PlayerController : MonoBehaviour
             playerMove.y = fallSpeed;
             playerAnimatorController.SetTrigger("playerJump");
         }
+    }
+
+    public void SetColgando(bool a) {
+        colgando = a;
     }
 
     private void OnAnimatorMove()
