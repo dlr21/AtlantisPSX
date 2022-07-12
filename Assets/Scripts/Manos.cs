@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Manos : MonoBehaviour
 {
-    [Header("Colgando")]
-    [SerializeField] private bool colgando = false;
-
-    public Transform orientation;
-    public Transform cam;
 
     public PlayerController pl;
 
@@ -24,27 +19,24 @@ public class Manos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pl.SetColgando(colgando);
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("enra");
         if (other.gameObject.CompareTag("Ledge")) {
-            colgando = true;
-            Debug.Log("tag");
+            pl.SetColgando(true,other);
+            pl.PlayerPosition(other.gameObject.GetComponent<Ledge>().VectorReal(pl.gameObject.transform));
+            pl.ledge = other.gameObject.GetComponent<Ledge>();
         }
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("sale");
         if (other.gameObject.CompareTag("Ledge"))
         {
-            colgando = false;
-            Debug.Log("tag2");
+            pl.SetColgando(false, other);
         }
 
     }

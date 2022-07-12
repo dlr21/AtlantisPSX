@@ -8,9 +8,11 @@ public class PlayerController : MonoBehaviour
     public float playerWalkSpeed;
     public float playerRunSpeed;
     [SerializeField] private float playerSpeed;
+    private float auxplayerSpeed;
     public float gravity;
     public float jumpForce;
     [SerializeField] private float fallSpeed;
+    private float auxfallSpeed;
 
     [Header("Direcciones")]
     [SerializeField] private float horizontalMove;
@@ -29,7 +31,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator playerAnimatorController;
 
     [Header("Agarre")]
-    [SerializeField] private bool colgando = false;
+    [SerializeField] private bool colgando = true;
+    public Ledge ledge;
 
 
     public bool running;
@@ -39,18 +42,19 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<CharacterController>();
         playerAnimatorController = GetComponent<Animator>();
         running = false;
+        auxplayerSpeed = playerSpeed;
+        auxfallSpeed = fallSpeed;
+
     }
 
     private void Update()
     {
+
         Inputs();
         camDirection();
-
         Move();
-
-        //Debug.Log(player.velocity.magnitude);
     }
-
+    //COSAS EN UPDATE//
     //movimiento con arreglo diagonal
     private void Inputs() {
 
@@ -82,20 +86,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (colgando) {
 
-            if (playerInput.z > 0)
-            {
-
-                Climb();
-
-            }
-            else if (playerInput.z < 0) {
-                //playerAnimatorController.SetTrigger("playerClimb"); FALL
-            }
-
-
-        }
         //movimiento en referencia a la camara
         playerMove = (playerInput.x * camRight + playerInput.z * camForward) * playerSpeed;
         //mover personaje a donde mire
@@ -106,10 +97,36 @@ public class PlayerController : MonoBehaviour
         player.Move(playerMove * Time.deltaTime);
     }
 
-    private void Climb(){
+    private void FixedUpdate()
+    {
+        if (colgando)
+        {
 
-    playerAnimatorController.SetTrigger("playerClimb");
 
+            if (playerInput.z > 0)
+            {
+                Climb();
+            }
+            else if (playerInput.z < 0)
+            {
+                StartMoving();
+                //playerAnimatorController.SetTrigger("playerClimb"); FALL
+            }
+
+
+        }
+    }
+
+    public void CallMeWithWait() { }
+
+    private void  Climb(){
+
+        playerAnimatorController.SetTrigger("playerClimb");
+
+    }
+    public void posClimb()
+    {
+        PlayerPosition(ledge.endPos);
     }
 
     //direccion de la que mira la camara
@@ -138,11 +155,9 @@ public class PlayerController : MonoBehaviour
         
         if (colgando)
         {
-            fallSpeed = 0;
             playerMove.y = fallSpeed;
         }
-        else 
-        if (player.isGrounded)
+        else if (player.isGrounded)
         {
             fallSpeed = -gravity*Time.deltaTime;
             playerMove.y = fallSpeed;
@@ -166,8 +181,34 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SetColgando(bool a) {
+    
+
+
+    public void SetColgando(bool a, Collider other) {
         colgando = a;
+        if (colgando)
+        {
+            StopMoving();
+
+            PlayerLooks(other.transform);
+        }
+        else if (!colgando) {
+            StartMoving();
+        }
+    }
+
+    public void StopMoving() {
+        playerSpeed = 0;
+        fallSpeed = 0;
+    }
+
+    public void StartMoving() {
+        playerSpeed = auxplayerSpeed;
+        fallSpeed = auxfallSpeed;
+    }
+
+    public void PlayerLooks(Transform target) {
+        transform.forward = -target.forward;
     }
 
     private void OnAnimatorMove()
@@ -175,4 +216,8 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public void PlayerPosition(Vector3 newPos)
+    {
+        transform.position =  newPos;
+    }
 }
