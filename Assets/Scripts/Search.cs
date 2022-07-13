@@ -83,6 +83,8 @@ public class Search : MonoBehaviour
                 update = true;
             }
         }
+
+        
     }
 
 
@@ -95,6 +97,7 @@ public class Search : MonoBehaviour
     void OnTriggerExit(Collider collision)
     {
         Debug.Log("salgo");
+        GameObject.Find("exclama").gameObject.transform.localScale = new Vector3(0, 0, 0);
         enZona = false;
     }
 }

@@ -34,8 +34,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool colgando = true;
     public Ledge ledge;
 
-
     public bool running;
+
+
 
     private void Start()
     {
@@ -49,7 +50,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
         Inputs();
         camDirection();
         Move();
@@ -101,19 +101,15 @@ public class PlayerController : MonoBehaviour
     {
         if (colgando)
         {
-
-
             if (playerInput.z > 0)
             {
                 Climb();
             }
             else if (playerInput.z < 0)
             {
-                StartMoving();
+                colgando = false;
                 //playerAnimatorController.SetTrigger("playerClimb"); FALL
             }
-
-
         }
     }
 
@@ -124,6 +120,7 @@ public class PlayerController : MonoBehaviour
         playerAnimatorController.SetTrigger("playerClimb");
 
     }
+
     public void posClimb()
     {
         PlayerPosition(ledge.endPos);
@@ -180,9 +177,6 @@ public class PlayerController : MonoBehaviour
             playerAnimatorController.SetTrigger("playerJump");
         }
     }
-
-    
-
 
     public void SetColgando(bool a, Collider other) {
         colgando = a;
