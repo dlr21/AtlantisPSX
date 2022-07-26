@@ -23,7 +23,7 @@ public class Examinados : MonoBehaviour
 
     public void lvl1_puerta_piscina()
     {
-        pd.AbrirPuerta();
+        pd.AbrirPuerta();//sustituir por el usar de la llave
         Debug.Log("hace falta USAR una llave");
     }
 

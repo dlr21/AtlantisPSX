@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c650e5ce01d5f3d4991a5d55334d58ca, type: 3}
+  m_Name: PieceofMosaic
+  m_EditorClassIdentifier: 
+  id: 17
+  itemName: PieceofMosaic
+  value: 0
+  icon: {fileID: 0}
+  description: These are found multiple times, first in Level 9 and then in Level
+    11 you will find 3 more.  They are used to restore mosaics that will either unlock
+    a door or open the exit to the level.

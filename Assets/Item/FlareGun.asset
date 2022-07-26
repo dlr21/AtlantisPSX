@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c650e5ce01d5f3d4991a5d55334d58ca, type: 3}
+  m_Name: FlareGun
+  m_EditorClassIdentifier: 
+  id: 6
+  itemName: FlareGun
+  value: 0
+  icon: {fileID: 0}
+  description: This item is always in Audrey's inventory and is her primary weapon. 
+    It can be used to solve certain puzzles that require light from the flare to
+    find the path or to hit certain objects that do not respond to weaker weapons
+    such as the boomerang.

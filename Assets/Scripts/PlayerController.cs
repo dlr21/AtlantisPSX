@@ -31,11 +31,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator playerAnimatorController;
 
     [Header("Agarre")]
-    [SerializeField] private bool colgando = true;
+    [SerializeField] private bool colgando;
     public Ledge ledge;
 
-    public bool running;
 
+    [Header("Estado")]
+    [SerializeField] private int state; //1 suelo, 2 agua no respira, 3 agua respira
+    public bool running;
+    public bool pause;
 
 
     private void Start()
@@ -43,6 +46,8 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<CharacterController>();
         playerAnimatorController = GetComponent<Animator>();
         running = false;
+        colgando = false;
+        state = 1;
         auxplayerSpeed = playerSpeed;
         auxfallSpeed = fallSpeed;
 
@@ -50,11 +55,20 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Inputs();
-        camDirection();
-        Move();
+
+        MenuInputs();
+
+        if (!pause)
+        {
+            Inputs();
+            camDirection();
+            Move();
+        }
+        else if (pause) {
+            
+        }
     }
-    //COSAS EN UPDATE//
+
     //movimiento con arreglo diagonal
     private void Inputs() {
 
@@ -70,13 +84,42 @@ public class PlayerController : MonoBehaviour
         playerAnimatorController.SetFloat("playerWalkVelocity", playerInput.magnitude * playerSpeed);
     }
 
+    private void MenuInputs()
+    {
+        
+        if (Input.GetButtonDown("Cancel") && pause)//salir de pausa
+        {
+            PauseGame();
+            pause = false;
+            HideInventory();
+        }else if (Input.GetButtonDown("Cancel") && !pause)//entrar en pausa
+        {
+            PauseGame();
+            pause = true;
+            ShowInventory();
+        }
+
+    }
+
+    void PauseGame()
+    {
+        if (pause)
+        {
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            Time.timeScale = 0;
+        }
+    }
+
     void isRunning() {
-        if (running && Input.GetButtonDown("Fire3"))
+        if (running && state==1 && Input.GetButtonDown("Fire3"))
         {
             running = false;
             playerSpeed = playerWalkSpeed;
         }
-        else if (!running && Input.GetButtonDown("Fire3"))
+        else if (!running && state == 1 && Input.GetButtonDown("Fire3"))
         {
             running = true;
             playerSpeed = playerRunSpeed;
@@ -99,11 +142,18 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Climb();
+    }
+
+    public void CallMeWithWait() { }
+
+    private void  Climb(){
+
         if (colgando)
         {
             if (playerInput.z > 0)
             {
-                Climb();
+                playerAnimatorController.SetTrigger("playerClimb"); 
             }
             else if (playerInput.z < 0)
             {
@@ -111,13 +161,6 @@ public class PlayerController : MonoBehaviour
                 //playerAnimatorController.SetTrigger("playerClimb"); FALL
             }
         }
-    }
-
-    public void CallMeWithWait() { }
-
-    private void  Climb(){
-
-        playerAnimatorController.SetTrigger("playerClimb");
 
     }
 
@@ -149,17 +192,31 @@ public class PlayerController : MonoBehaviour
     //fuerza hacia abajo estando en el suelo y aceleracion de gravedad estando en el aire
     private void SetGravity() {
 
-        
-        if (colgando)
+
+        if (colgando)//ledge
         {
             playerMove.y = fallSpeed;
         }
-        else if (player.isGrounded)
+        else if (player.isGrounded && state!=2)//grounded
         {
-            fallSpeed = -gravity*Time.deltaTime;
+            fallSpeed = -gravity * Time.deltaTime;
+            playerMove.y = fallSpeed;
+            state = 1;
+        }
+        else if(state==2){//agua no respira
+
+            fallSpeed += gravity * Time.deltaTime;
+            if(fallSpeed>0.1)
+            {
+                fallSpeed = 0;
+            }
             playerMove.y = fallSpeed;
         }
-        else {
+        else if (state == 3){//agua  respira
+            fallSpeed = 0;
+            playerMove.y = fallSpeed;
+        }
+        else {//air
             fallSpeed -= gravity * Time.deltaTime;
             playerMove.y = fallSpeed;
             //animacion de que hacemos segun la velocidad en el aire
@@ -170,11 +227,31 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Jump() {
-        if (player.isGrounded && Input.GetButtonDown("Jump"))
+        //salto desde tierra
+        if (player.isGrounded && Input.GetButtonDown("Jump") && state!=2)
         {
             fallSpeed = jumpForce;
             playerMove.y = fallSpeed;
             playerAnimatorController.SetTrigger("playerJump");
+        }
+        ////agua respira saktasalta
+        if (state == 3 && Input.GetButtonDown("Jump")) {
+            fallSpeed = jumpForce;
+            playerMove.y = fallSpeed;
+            state = 0;
+            playerAnimatorController.SetBool("isSwimming", false);
+            playerAnimatorController.SetTrigger("playerJump");
+        }
+        ///agua no respira intenta subir
+        if (state == 2 && Input.GetKey("space"))
+        {
+            fallSpeed += gravity*3*Time.deltaTime;
+            playerMove.y = fallSpeed;
+        }
+        if (state == 2 && Input.GetKey("left shift"))
+        {
+            fallSpeed -= gravity *1.5f* Time.deltaTime;
+            playerMove.y = fallSpeed;
         }
     }
 
@@ -214,4 +291,43 @@ public class PlayerController : MonoBehaviour
     {
         transform.position =  newPos;
     }
+
+    public void playerState(string estado)
+    {
+
+        if (estado.Equals("grounded"))
+        {
+            state = 1;
+            playerAnimatorController.SetBool("isSwimming", false);
+        }
+        else if (estado.Equals("WaterIn"))
+        {
+            state = 2;
+            playerAnimatorController.SetBool("isSwimming", true);
+        }
+        else if (estado.Equals("WaterOut"))
+        {
+            state = 3;
+        }
+    }
+
+    public void ShowInventory() {
+        InventoryManager.instance.Show();
+    }
+    public void HideInventory()
+    {
+        InventoryManager.instance.Hide();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
