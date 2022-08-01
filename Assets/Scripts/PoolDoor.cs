@@ -22,13 +22,16 @@ public class PoolDoor : MonoBehaviour
         
     }
 
-    private bool ComprobarInventario() {
-
-        return false;
-    }
-
     public void AbrirPuerta() {
-        door.SetTrigger("Open");
+
+        if (gameObject.GetComponent<Search>().enZona)
+        {
+            door.SetTrigger("Open");
+        }
+        else {
+            Debug.Log("No se puede USAR AQUI");
+        }
+        
     }
 
 }

@@ -32,7 +32,7 @@ public class Item : ScriptableObject
     {
         if (id == 0) //Compass
         {
-
+           
         }
         else if (id == 1) //WhitmorePortfolio?
         {
@@ -40,23 +40,24 @@ public class Item : ScriptableObject
         }
         else if (id == 6) //Boomerang 
         {
-
+            GameObject.Find("Player").GetComponent<PrimaryWeapon>().Boomerang();
         }
         else if (id == 7) //Grenades
         {
-
+            GameObject.Find("Player").GetComponent<PrimaryWeapon>().Grenades();
         }
         else if (id == 10) //HandfulofRocks
         {
-
+            GameObject.Find("Player").GetComponent<PrimaryWeapon>().HandfulofRocks();
         }
         else if (id == 15) //BoltStaff
         {
-
+            GameObject.Find("Player").GetComponent<PrimaryWeapon>().BoltStaff();
         } else if (id == 30) //FlareGun
         {
-
-        }else{
+            GameObject.Find("Player").GetComponent<PrimaryWeapon>().FlareGun();
+        }
+        else{
             NoOption();
         }
 
@@ -86,9 +87,12 @@ public class Item : ScriptableObject
 
     void UseKey()
     {
-        if (id == 5) //oldkey//pool_lvl1
+        if (id == 100) {
+
+        }
+        else if (id == 5) //oldkey//pool_lvl1
         {
-            GameObject.Find("PuertaPiscina").GetComponent<PoolDoor>().AbrirPuerta();
+            GameObject.Find("ExaminarPuerta").GetComponent<PoolDoor>().AbrirPuerta();
         }else {
             NoOption();
         }

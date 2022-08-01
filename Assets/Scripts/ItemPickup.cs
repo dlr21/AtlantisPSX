@@ -25,14 +25,12 @@ public class ItemPickup : MonoBehaviour
 
         }
         else if (item.id == 27) {//golden heart
-
+            GameObject.Find("Player").GetComponent<PlayerData>().LifeUp();
         }
         else if (item.id == 28) {//clear crystals  
-
-
+            GameObject.Find("Player").GetComponent<PlayerData>().MoreCrystals();
         }
         else if (item.id == 29) {//letter
-
 
         }
     }
