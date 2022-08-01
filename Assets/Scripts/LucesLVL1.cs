@@ -12,13 +12,6 @@ public class LucesLVL1 : MonoBehaviour
         luz = gameObject.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
     public void switchOn()
     {
         luz.SetTrigger("switchOn");

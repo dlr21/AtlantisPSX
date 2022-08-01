@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c650e5ce01d5f3d4991a5d55334d58ca, type: 3}
   m_Name: EndKey
   m_EditorClassIdentifier: 
-  id: 3
+  id: 2
   itemName: EndKey
+  type: 3
   value: 0
   icon: {fileID: 0}
   description: This item is acquired in Level 1 in the desk down in the boiler room

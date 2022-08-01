@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c650e5ce01d5f3d4991a5d55334d58ca, type: 3}
   m_Name: FlareGun
   m_EditorClassIdentifier: 
-  id: 6
+  id: 30
   itemName: FlareGun
+  type: 0
   value: 0
   icon: {fileID: 0}
   description: This item is always in Audrey's inventory and is her primary weapon. 

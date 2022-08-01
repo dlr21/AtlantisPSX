@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 18
   itemName: OldHook
+  type: 3
   value: 0
   icon: {fileID: 0}
   description: This item is acquired in Level 10 and is used as a missing chain link

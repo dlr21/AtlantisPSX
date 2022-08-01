@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 25
   itemName: Antivenin
+  type: 1
   value: 0
   icon: {fileID: 0}
   description: Cures character of poison, can only carry 10 at a time

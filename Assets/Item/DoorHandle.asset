@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 9
   itemName: DoorHandle
+  type: 3
   value: 0
   icon: {fileID: 0}
   description: This item is acquired in Level 2 by the spinning turbines underwater.

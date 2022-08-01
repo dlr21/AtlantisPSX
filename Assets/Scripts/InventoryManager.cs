@@ -27,19 +27,17 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        optionV = 3;
+        optionV = 0;
         optionH = 0;
         showing = false;
     }
-
 
     public void Update()
     {
         if (showing) {
 
             Inputs();
-
-
+           
         }
     }
 
@@ -77,6 +75,8 @@ public class InventoryManager : MonoBehaviour
             optionH++;
             ChangeOptionHorizontal(false);
         }
+
+
     }
 
     //mover objetos en la misma lista de menu
@@ -274,5 +274,25 @@ public class InventoryManager : MonoBehaviour
 
     }
 
+    public void UseItem()
+    {
 
+        if (optionV == 0)
+        {
+            Basics[optionH].Use();
+        }
+        else if (optionV == 1)
+        {
+            Consumibles[optionH].Use();
+        }
+        else if (optionV == 2)
+        {
+            Crystals[optionH].Use();
+        }
+        else if (optionV == 3)
+        {
+            Keys[optionH].Use();
+        }
+
+    }
 }
