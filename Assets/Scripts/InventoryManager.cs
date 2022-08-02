@@ -76,6 +76,10 @@ public class InventoryManager : MonoBehaviour
             ChangeOptionHorizontal(false);
         }
 
+        if (Input.GetKeyDown("l"))
+        {
+            Basics[0].Use();
+        }
 
     }
 

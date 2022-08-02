@@ -22,7 +22,7 @@ public class PrimaryWeapon : MonoBehaviour
     void Start()
     {
         onAir = false;
-        canShoot = false;
+        canShoot = true;
     }
 
     public void Boomerang()
@@ -31,7 +31,8 @@ public class PrimaryWeapon : MonoBehaviour
             enemyPosition = DetectEnemy();
             if (enemyPosition != new Vector3(99, 99, 99))
             {
-                Instantiate(boomerang, transform.position + new Vector3(0, 2.5f, 0), transform.rotation);
+                Debug.Log("instanciado");
+                Instantiate(boomerang, transform.position + new Vector3(0, 1.5f, 0), transform.rotation);
                 onAir = true;
                 canShoot = false;
             }
@@ -59,6 +60,7 @@ public class PrimaryWeapon : MonoBehaviour
             enemyPosition = DetectEnemy();
             if (enemyPosition != new Vector3(99, 99, 99))
             {
+                
                 Instantiate(handfulofRocks, transform.position + new Vector3(0, 2.5f, 0), transform.rotation);
                 onAir = true;
                 canShoot = false;

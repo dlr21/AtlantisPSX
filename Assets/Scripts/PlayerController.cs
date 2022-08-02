@@ -314,6 +314,7 @@ public class PlayerController : MonoBehaviour
     public void ShowInventory() {
         InventoryManager.instance.Show();
     }
+
     public void HideInventory()
     {
         InventoryManager.instance.Hide();
