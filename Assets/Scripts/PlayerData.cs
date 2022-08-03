@@ -62,4 +62,10 @@ public class PlayerData : MonoBehaviour
         }
     }
 
+    public void CambiarPersonaje(int i) {
+        personaje = i;
+        InventoryManager.instance.ChangeCharacter(i);
+        //cambiar modelo personaje
+    }
+
 }

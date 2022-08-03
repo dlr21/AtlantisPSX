@@ -8,6 +8,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance;
     public bool showing;
     public GameObject inventPanel;
+    public Item boomerang, granades, bolt, flare, rocks;
 
     public List<Item> Basics = new List<Item>();
     public List<Item> Consumibles = new List<Item>();
@@ -298,5 +299,27 @@ public class InventoryManager : MonoBehaviour
             Keys[optionH].Use();
         }
 
+    }
+
+    public void ChangeCharacter(int i) {
+        if (i == 0)
+        {
+            Basics[0] = boomerang ;
+        }
+        else if (i == 1) {
+            Basics[0] = flare;
+        }
+        else if (i == 2)
+        {
+            Basics[0] = granades;
+        }
+        else if (i == 3)
+        {
+            Basics[0] = rocks;
+        }
+        else if (i == 4)
+        {
+            Basics[0] = bolt;
+        }
     }
 }

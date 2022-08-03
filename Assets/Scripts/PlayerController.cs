@@ -101,6 +101,18 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void Dialog(Vector3 npc) {
+        if (!pause)
+        {
+            transform.LookAt(npc+new Vector3(0,transform.position.y,0));
+            pause = true;
+            playerAnimatorController.SetFloat("playerWalkVelocity", 0);
+        }
+        else if (pause) {
+            pause = false;
+        }
+    }
+
     void PauseGame()
     {
         if (pause)

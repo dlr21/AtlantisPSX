@@ -66,7 +66,7 @@ public class Boomerang : MonoBehaviour
             va = false;
             vuelve = true;
             time = 0.0f;
-            Debug.Log("toca Enemy");
+            Debug.Log("toca Enemy");//quitar vida
         }
         else if (other.CompareTag("Player") && vuelve) {
             vuelve = false;
