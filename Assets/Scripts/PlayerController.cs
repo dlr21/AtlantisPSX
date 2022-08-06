@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int state; //1 suelo, 2 agua no respira, 3 agua respira
     public bool running;
     public bool pause;
+    public bool dialog;
 
 
     private void Start()
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
         playerAnimatorController = GetComponent<Animator>();
         running = false;
         colgando = false;
+        dialog = false;
         state = 1;
         auxplayerSpeed = playerSpeed;
         auxfallSpeed = fallSpeed;
@@ -65,7 +67,9 @@ public class PlayerController : MonoBehaviour
             Move();
         }
         else if (pause) {
-            
+            if (dialog) {
+
+            }
         }
     }
 

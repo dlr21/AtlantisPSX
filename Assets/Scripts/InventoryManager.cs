@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
 
     public static InventoryManager instance;
-    public bool showing;
+    public bool showing,selected;
     public GameObject inventPanel;
     public Item boomerang, granades, bolt, flare, rocks;
 
@@ -23,6 +24,8 @@ public class InventoryManager : MonoBehaviour
     public int optionV;
     public int optionH;
 
+    public int optionSelected;
+    public GameObject nombre;
 
 
     private void Awake()
@@ -38,50 +41,150 @@ public class InventoryManager : MonoBehaviour
         if (showing) {
 
             Inputs();
+
+            nombre.GetComponent<TextMeshProUGUI>().text = nombreItem();
            
         }
     }
 
+   private string nombreItem() {
+
+        if (optionV == 0)
+        {
+            if(optionH < Basics.Count && Basics[optionH]!=null) return Basics[optionH].name;
+        }
+        else if (optionV == 1) {
+            if (optionH < Consumibles.Count && Consumibles[optionH] != null) return Consumibles[optionH].name;
+        }
+        else if (optionV == 2)
+        {
+            if (optionH < Crystals.Count && Crystals[optionH] != null) return Crystals[optionH].name;
+        }
+        else if (optionV == 3)
+        {
+            if (optionH < Keys.Count && Keys[optionH] != null) return Keys[optionH].name;
+        }
+
+
+
+        return "No item";
+    }
+
     public void Inputs() {
 
-        if (Input.GetKeyDown("w"))
+        if (!selected)
         {
-            if (optionV < 3)
+
+            if (Input.GetKeyDown("w"))
             {
-                optionV++;
-                optionH = 0;
-                ChangeOptionVertical(true);
-                Debug.Log("w");
+                if (optionV < 4 && optionV>0)
+                {
+                    optionV--;
+                    optionH = 0;
+                    ChangeOptionVertical(true);
+                    Debug.Log("w");
+                }
             }
-        }
 
-        if (Input.GetKeyDown("s"))
-        {
-            if (optionV > 0) {
-                optionV--;
-                optionH = 0;
-                ChangeOptionVertical(false);
-                Debug.Log("s");
+            if (Input.GetKeyDown("s"))
+            {
+                if (optionV > -1 && optionV<3)
+                {
+                    optionV++;
+                    optionH = 0;
+                    ChangeOptionVertical(false);
+                    Debug.Log("s");
+                }
             }
+
+            if (Input.GetKeyDown("a"))
+            {
+                optionH--;
+                if (controlOptionH()) {
+                    
+                    ChangeOptionHorizontal(true);
+                }
+                else
+                {
+                    optionH++;
+                }
+
+            }
+
+            if (Input.GetKeyDown("d"))
+            {
+                optionH++;
+                if (controlOptionH())
+                {
+
+                    ChangeOptionHorizontal(true);
+                }
+                else {
+                    optionH--;
+                }
+            }
+
+        }
+        else {
+
+            //Parpadear opcion
+
+            if (Input.GetKeyDown("w"))
+            {
+                if (optionSelected < 1 && optionV > -1)
+                {
+                    optionSelected++;
+                }
+            }
+
+            if (Input.GetKeyDown("s"))
+            {
+                if (optionV > 0 && optionV < 2)
+                {
+                    optionSelected--;
+                }
+            }
+
+            if (Input.GetKeyDown("return")) {
+                if (optionSelected == 0)
+                {
+                    UseItem();
+                    Debug.Log("usar");
+                }
+                else if (optionSelected == 1) {
+                    Debug.Log("Combinar");
+                }
+            }
+
         }
 
-        if (Input.GetKeyDown("a"))
+
+
+    }
+
+    public void AtacarItem() {
+        if (0 < Basics.Count && Basics[0] != null) Basics[0].Use();
+    }
+
+    bool controlOptionH() {
+
+        if (optionV == 0)
         {
-            optionH--;
-            ChangeOptionHorizontal(true);
+            if (optionH  > Basics.Count-1 || optionH < 0) return false ;
         }
-
-        if (Input.GetKeyDown("d"))
+        else if (optionV == 1)
         {
-            optionH++;
-            ChangeOptionHorizontal(false);
+            if (optionH  > Consumibles.Count-1 || optionH  < 0) return false;
         }
-
-        if (Input.GetKeyDown("l"))
+        else if (optionV == 2)
         {
-            Basics[0].Use();
+            if (optionH > Crystals.Count-1 || optionH  < 0) return false;
         }
-
+        else if (optionV == 3)
+        {
+            if (optionH > Keys.Count-1 || optionH  < 0) return false;
+        }
+        return true;
     }
 
     //mover objetos en la misma lista de menu
@@ -101,7 +204,7 @@ public class InventoryManager : MonoBehaviour
         Debug.Log("vert "+optionV);
 
         switch (optionV) {
-            case 3:
+            case 0:
                 if (optionH < 1 || optionH > MenuBasic.Count - 1) { break; }
                 for (int i = 0; i < MenuBasic.Count; i++)
                 {
@@ -109,7 +212,7 @@ public class InventoryManager : MonoBehaviour
                 }
 
                 break;
-            case 2:
+            case 1:
                 if (optionH < 1 || optionH > MenuConsumibles.Count - 1) { break; }
                 for (int i = 0; i < MenuConsumibles.Count; i++)
                 {
@@ -117,7 +220,7 @@ public class InventoryManager : MonoBehaviour
                 }
 
                 break;
-            case 1:
+            case 2:
                 if (optionH < 1 || optionH > MenuCrystals.Count - 1) { break; }
                 for (int i = 0; i < MenuCrystals.Count; i++)
                 {
@@ -125,7 +228,7 @@ public class InventoryManager : MonoBehaviour
                 }
 
                 break;
-            case 0:
+            case 3:
                 if (optionH < 1 || optionH > MenuKeys.Count -1) { break; } 
                 for (int i = 0; i < MenuKeys.Count; i++)
                 {
@@ -219,8 +322,7 @@ public class InventoryManager : MonoBehaviour
     public void Show() {
         inventPanel.SetActive(true);
         showing = true;
-        optionV = 3;
-        optionH = 0;
+
         Vector3 pos = Camera.main.transform.position + Camera.main.transform.forward;
 
         for (int i = 0; i < Basics.Count; i++)

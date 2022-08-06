@@ -12,7 +12,12 @@ public class Dialogos : MonoBehaviour
     public float speed;
     public bool leyendo;
     public bool enZona;
-    
+
+    [Header("Personaje y espera")]
+    public Character ch;
+    public bool input;
+    public int indexInput;
+
 
     private int index;
     // Start is called before the first frame update
@@ -20,6 +25,8 @@ public class Dialogos : MonoBehaviour
     {
         textComponent.text = string.Empty;
         leyendo = false;
+        input = false;
+        indexInput = 0;
     }
 
     // Update is called once per frame
@@ -30,13 +37,16 @@ public class Dialogos : MonoBehaviour
             if (Input.GetKeyDown("e") && !leyendo)
             {
                 Hola();
-                pc.Dialog(new Vector3(transform.position.x,0,transform.position.z));
+                //mirar a quien hablas
+                pc.Dialog(new Vector3(transform.position.x, 0, transform.position.z));
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && leyendo) {
+        //clic al leer 
+        if (Input.GetMouseButtonDown(0) && leyendo || inputCorrecto()) {
             if (textComponent.text == lines[index]) {
-                NextLine();
+
+                if (!input) NextLine();
             }
             else
             {
@@ -44,6 +54,16 @@ public class Dialogos : MonoBehaviour
                 textComponent.text = lines[index];
             }
         }
+    }
+
+    bool inputCorrecto() {
+        if (input && Input.GetKeyDown(ch.inputWait(indexInput)))
+        {
+            indexInput++;
+            input = false;
+            return true;
+        }
+        return false;
     }
 
     void StartDialogue() {
@@ -64,6 +84,9 @@ public class Dialogos : MonoBehaviour
         {
             index++;
             textComponent.text = string.Empty;
+            if (ch.inputIndex(index)) {
+                input = true;
+            }
             StartCoroutine(typeLine());
         }
         else {

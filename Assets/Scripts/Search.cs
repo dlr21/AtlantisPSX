@@ -69,8 +69,8 @@ public class Search : MonoBehaviour
                     {
 
 
-                        indicatorTimer = maxindicatorTimer;
-                        radialIndicator.fillAmount = maxindicatorTimer;
+                        indicatorTimer = 0;
+                        radialIndicator.fillAmount = 0;
                         radialIndicator.enabled = false;
                         update = false;
                     }

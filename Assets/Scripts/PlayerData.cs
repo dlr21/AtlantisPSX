@@ -21,6 +21,21 @@ public class PlayerData : MonoBehaviour
         personaje = 0;
         clearCrystals = 0;
     }
+    //HAY QUE QUITARLO
+    private void Update()
+    {
+
+        //Usar arma primaria del personaje
+        if (Input.GetKeyDown("l"))
+        {
+            InventoryManager.instance.AtacarItem();
+        }
+
+        if (Input.anyKey)
+        {
+            Debug.Log(Input.inputString);
+        }
+    }
 
     public void MoreCrystals() {
         clearCrystals++;
