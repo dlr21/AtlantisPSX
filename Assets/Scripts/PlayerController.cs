@@ -105,6 +105,12 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void UsedKey() {
+        PauseGame();
+        pause = false;
+        HideInventory();
+    }
+
     public void Dialog(Vector3 npc) {
         if (!pause)
         {

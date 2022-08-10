@@ -33,7 +33,7 @@ public class PlayerData : MonoBehaviour
 
         if (Input.anyKey)
         {
-            Debug.Log(Input.inputString);
+            //Debug.Log(Input.inputString);
         }
     }
 

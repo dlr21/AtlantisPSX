@@ -15,5 +15,6 @@ public class LucesLVL1 : MonoBehaviour
     public void switchOn()
     {
         luz.SetTrigger("switchOn");
+        gameObject.GetComponent<Search>().activa(true);
     }
 }

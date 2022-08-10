@@ -87,6 +87,9 @@ public class Search : MonoBehaviour
         
     }
 
+    public void activa(bool b) {
+        activado = b;
+    }
 
     void OnTriggerEnter(Collider collision)
     {
@@ -99,5 +102,6 @@ public class Search : MonoBehaviour
         Debug.Log("salgo");
         GameObject.Find("exclama").gameObject.transform.localScale = new Vector3(0, 0, 0);
         enZona = false;
+        activa(false);
     }
 }

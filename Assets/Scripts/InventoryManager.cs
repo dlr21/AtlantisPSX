@@ -26,7 +26,12 @@ public class InventoryManager : MonoBehaviour
 
     public int optionSelected;
     public GameObject nombre;
+    public GameObject usar;
+    public GameObject combinar;
+    public GameObject seleccionar;
 
+    private Color colText1;
+    private Color colText2;
 
     private void Awake()
     {
@@ -34,6 +39,12 @@ public class InventoryManager : MonoBehaviour
         optionV = 0;
         optionH = 0;
         showing = false;
+        optionSelected = 0;
+        colText1 = new Color(255, 255, 255, 255);
+        colText1.a=1f;
+
+        colText2 = new Color(255, 255, 255, 255);
+        colText2.a = 0.5f;
     }
 
     public void Update()
@@ -82,7 +93,7 @@ public class InventoryManager : MonoBehaviour
                     optionV--;
                     optionH = 0;
                     ChangeOptionVertical(true);
-                    Debug.Log("w");
+
                 }
             }
 
@@ -93,7 +104,7 @@ public class InventoryManager : MonoBehaviour
                     optionV++;
                     optionH = 0;
                     ChangeOptionVertical(false);
-                    Debug.Log("s");
+
                 }
             }
 
@@ -102,7 +113,7 @@ public class InventoryManager : MonoBehaviour
                 optionH--;
                 if (controlOptionH()) {
                     
-                    ChangeOptionHorizontal(true);
+                    ChangeOptionHorizontal(false);
                 }
                 else
                 {
@@ -124,24 +135,39 @@ public class InventoryManager : MonoBehaviour
                 }
             }
 
+            if (Input.GetKeyDown("return")) {
+
+
+                if (itemExist())
+                {
+                    selected = true;
+                    usar.GetComponent<TextMeshProUGUI>().color = colText1;
+                    seleccionar.GetComponent<TextMeshProUGUI>().color = colText2;
+                }
+
+            }
         }
         else {
-
-            //Parpadear opcion
-
-            if (Input.GetKeyDown("w"))
+            
+            if (Input.GetKeyDown("s"))
             {
-                if (optionSelected < 1 && optionV > -1)
+                //cambia a combinar
+                if (optionSelected==0)
                 {
                     optionSelected++;
+                    combinar.GetComponent<TextMeshProUGUI>().color = colText1;
+                    usar.GetComponent<TextMeshProUGUI>().color = colText2;
                 }
             }
 
-            if (Input.GetKeyDown("s"))
+            if (Input.GetKeyDown("w"))
             {
-                if (optionV > 0 && optionV < 2)
+                //cambia a usar
+                if (optionSelected==1)
                 {
                     optionSelected--;
+                    combinar.GetComponent<TextMeshProUGUI>().color = colText2;
+                    usar.GetComponent<TextMeshProUGUI>().color = colText1;
                 }
             }
 
@@ -156,9 +182,39 @@ public class InventoryManager : MonoBehaviour
                 }
             }
 
+            if (Input.GetKeyDown("space"))
+            {
+                selected = false;
+                combinar.GetComponent<TextMeshProUGUI>().color = colText2;
+                usar.GetComponent<TextMeshProUGUI>().color = colText2;
+                seleccionar.GetComponent<TextMeshProUGUI>().color = colText1;
+            }
+
         }
 
 
+
+    }
+
+    bool itemExist()
+    {
+        if (optionV == 0)
+        {
+            if (MenuBasic[optionH]==null) return false;
+        }
+        else if (optionV == 1)
+        {
+            if (MenuConsumibles[optionH] == null) return false;
+        }
+        else if (optionV == 2)
+        {
+            if (MenuCrystals[optionH] == null) return false;
+        }
+        else if (optionV == 3)
+        {
+            if (MenuKeys[optionH] == null) return false;
+        }
+        return true;
 
     }
 
@@ -167,7 +223,6 @@ public class InventoryManager : MonoBehaviour
     }
 
     bool controlOptionH() {
-
         if (optionV == 0)
         {
             if (optionH  > Basics.Count-1 || optionH < 0) return false ;
@@ -194,18 +249,17 @@ public class InventoryManager : MonoBehaviour
 
         if (op)
         {
-            aux = aux/4;
+            aux = -aux/3;
         }
         else
         {
-            aux = -aux/4;
+            aux = aux/3;
         }
 
-        Debug.Log("vert "+optionV);
-
+        Debug.Log("menukey" + MenuKeys.Count);
         switch (optionV) {
             case 0:
-                if (optionH < 1 || optionH > MenuBasic.Count - 1) { break; }
+                //if (optionH < 1 || optionH > MenuBasic.Count ) { break; }
                 for (int i = 0; i < MenuBasic.Count; i++)
                 {
                     MenuBasic[i].transform.position = MenuBasic[i].transform.position + aux;
@@ -213,7 +267,7 @@ public class InventoryManager : MonoBehaviour
 
                 break;
             case 1:
-                if (optionH < 1 || optionH > MenuConsumibles.Count - 1) { break; }
+                //if (optionH < 1 || optionH > MenuConsumibles.Count ) { break; }
                 for (int i = 0; i < MenuConsumibles.Count; i++)
                 {
                     MenuConsumibles[i].transform.position = MenuConsumibles[i].transform.position + aux;
@@ -221,7 +275,7 @@ public class InventoryManager : MonoBehaviour
 
                 break;
             case 2:
-                if (optionH < 1 || optionH > MenuCrystals.Count - 1) { break; }
+                //if (optionH < 1 || optionH > MenuCrystals.Count ) { break; }
                 for (int i = 0; i < MenuCrystals.Count; i++)
                 {
                     MenuCrystals[i].transform.position = MenuCrystals[i].transform.position + aux;
@@ -229,7 +283,7 @@ public class InventoryManager : MonoBehaviour
 
                 break;
             case 3:
-                if (optionH < 1 || optionH > MenuKeys.Count -1) { break; } 
+                //if (optionH < 1 || optionH > MenuKeys.Count ) { break; } 
                 for (int i = 0; i < MenuKeys.Count; i++)
                 {
                     MenuKeys[i].transform.position = MenuKeys[i].transform.position + aux;
@@ -272,6 +326,7 @@ public class InventoryManager : MonoBehaviour
         {
             MenuKeys[i].transform.position = MenuKeys[i].transform.position + aux;
         }
+        reposicionarMenuV();
 
     }
 
@@ -320,29 +375,46 @@ public class InventoryManager : MonoBehaviour
 
     
     public void Show() {
+
         inventPanel.SetActive(true);
         showing = true;
+        selected = false;
+        optionV = 0;
+        optionH = 0;
+
+        combinar.GetComponent<TextMeshProUGUI>().color = colText2;
+        usar.GetComponent<TextMeshProUGUI>().color = colText2;
+        seleccionar.GetComponent<TextMeshProUGUI>().color = colText1;
 
         Vector3 pos = Camera.main.transform.position + Camera.main.transform.forward;
+        Vector3 posaux = pos;
 
         for (int i = 0; i < Basics.Count; i++)
         {
-            MenuBasic.Add(Instantiate(Basics[i].icon, pos, Camera.main.transform.rotation));
+            MenuBasic.Add(Instantiate(Basics[i].icon, posaux, Camera.main.transform.rotation));
+            posaux=posaux + Camera.main.transform.right/3;
         }
         pos.y = pos.y + 1;
+        posaux = pos;
         for (int i = 0; i < Consumibles.Count; i++)
         {
-            MenuConsumibles.Add(Instantiate(Consumibles[i].icon, pos, Camera.main.transform.rotation));
+            MenuConsumibles.Add(Instantiate(Consumibles[i].icon, posaux, Camera.main.transform.rotation));
+            posaux = posaux + Camera.main.transform.right / 3;
         }
         pos.y = pos.y + 1;
+        posaux = pos;
         for (int i = 0; i < Crystals.Count; i++)
         {
-            MenuCrystals.Add(Instantiate(Crystals[i].icon, pos, Camera.main.transform.rotation));
+            MenuCrystals.Add(Instantiate(Crystals[i].icon, posaux, Camera.main.transform.rotation ));
+            posaux = posaux + Camera.main.transform.right / 3;
         }
         pos.y = pos.y + 1;
+        posaux = pos;
         for (int i = 0; i < Keys.Count; i++)
         {
-            MenuKeys.Add(Instantiate(Keys[i].icon, pos, Camera.main.transform.rotation));
+            MenuKeys.Add(Instantiate(Keys[i].icon, posaux, Camera.main.transform.rotation));
+            posaux = posaux + Camera.main.transform.right / 3;
+
         }
         
 
@@ -403,12 +475,14 @@ public class InventoryManager : MonoBehaviour
 
     }
 
-    public void ChangeCharacter(int i) {
+    public void ChangeCharacter(int i)
+    {
         if (i == 0)
         {
-            Basics[0] = boomerang ;
+            Basics[0] = boomerang;
         }
-        else if (i == 1) {
+        else if (i == 1)
+        {
             Basics[0] = flare;
         }
         else if (i == 2)
@@ -422,6 +496,45 @@ public class InventoryManager : MonoBehaviour
         else if (i == 4)
         {
             Basics[0] = bolt;
+        }
+    }
+
+
+    void reposicionarMenuV() {
+        Vector3 pos = Camera.main.transform.position + Camera.main.transform.forward;
+        Vector3 posaux = pos;
+
+        if (optionV == 0)
+        {
+            for (int i = 0; i < MenuBasic.Count; i++)
+            {
+                MenuBasic[i].transform.position = posaux;
+                posaux = posaux + Camera.main.transform.right / 3;
+            }
+        }
+        else if (optionV == 1)
+        {
+            for (int i = 0; i < MenuConsumibles.Count; i++)
+            {
+                MenuConsumibles[i].transform.position = posaux;
+                posaux = posaux + Camera.main.transform.right / 3;
+            }
+        }
+        else if (optionV == 2)
+        {
+            for (int i = 0; i < MenuCrystals.Count; i++)
+            {
+                MenuCrystals[i].transform.position = posaux;
+                posaux = posaux + Camera.main.transform.right / 3;
+            }
+        }
+        else if (optionV == 3)
+        {
+            for (int i = 0; i < MenuKeys.Count; i++)
+            {
+                MenuKeys[i].transform.position = posaux;
+                posaux = posaux + Camera.main.transform.right / 3;
+            }
         }
     }
 }
