@@ -9,4 +9,16 @@ public class Enemy : MonoBehaviour
 
     public int range;
 
+    public void LessHealth(int h) {
+        health = health - h;
+        if (health < 1) {
+            Die();
+        }
+    }
+
+    void Die() {
+        //animacion morir
+        Destroy(gameObject);
+    }
+
 }

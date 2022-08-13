@@ -5,6 +5,7 @@ using UnityEngine;
 public class LucesLVL1 : MonoBehaviour
 {
     private Animator luz;
+    public GameObject search;
     
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,7 @@ public class LucesLVL1 : MonoBehaviour
     public void switchOn()
     {
         luz.SetTrigger("switchOn");
-        gameObject.GetComponent<Search>().activa(true);
+        search.GetComponent<Search>().activa(true);
+        search.GetComponent<Search>().Fin();
     }
 }

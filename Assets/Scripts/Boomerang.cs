@@ -10,6 +10,7 @@ public class Boomerang : MonoBehaviour
     public float rotationSpeed;
     private float time;
     public bool va, vuelve;
+    public int damage;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +38,6 @@ public class Boomerang : MonoBehaviour
                 }
             }
             else if (vuelve) {
-                Debug.Log("vuelve");
                 if (time < 1.0f)
                 {
                     gameObject.transform.position = getBQCPoint(time, gameObject.transform.position, curve_point.position, pw.transform.position+new Vector3(0,1.5f,0));
@@ -66,6 +66,7 @@ public class Boomerang : MonoBehaviour
             va = false;
             vuelve = true;
             time = 0.0f;
+            other.GetComponent<Enemy>().LessHealth(damage);
             Debug.Log("toca Enemy");//quitar vida
         }
         else if (other.CompareTag("Player") && vuelve) {

@@ -184,8 +184,14 @@ public class Item : ScriptableObject
         {
 
         }
-        else
+        else if (id == 2) {//EndKey
+            GameObject.Find("InventoryManager").GetComponent<Combinations>().Combines(this);
+        }
+        else if (id == 4)//HandleKey
         {
+            GameObject.Find("InventoryManager").GetComponent<Combinations>().Combines(this);
+        }
+        else{
             NoOption();
         }
     }

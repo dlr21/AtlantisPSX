@@ -93,9 +93,7 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetButtonDown("Cancel") && pause)//salir de pausa
         {
-            PauseGame();
-            pause = false;
-            HideInventory();
+            ExitMenu();
         }else if (Input.GetButtonDown("Cancel") && !pause)//entrar en pausa
         {
             PauseGame();
@@ -103,6 +101,12 @@ public class PlayerController : MonoBehaviour
             ShowInventory();
         }
 
+    }
+
+    public void ExitMenu() {
+        PauseGame();
+        pause = false;
+        HideInventory();
     }
 
     public void UsedKey() {
@@ -335,6 +339,7 @@ public class PlayerController : MonoBehaviour
 
     public void ShowInventory() {
         InventoryManager.instance.Show();
+
     }
 
     public void HideInventory()

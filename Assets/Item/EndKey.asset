@@ -16,7 +16,8 @@ MonoBehaviour:
   itemName: EndKey
   type: 3
   value: 0
-  icon: {fileID: 0}
+  rotationPlus: {x: 0, y: 0, z: 0, w: 0}
+  icon: {fileID: 6653796787140266242, guid: 3526b8cfffb0e454587bb158877d979d, type: 3}
   description: This item is acquired in Level 1 in the desk down in the boiler room
     and must be combined with the "Handle of a Broken Key" that Whitmore gives you
     after you give him the portfolios.

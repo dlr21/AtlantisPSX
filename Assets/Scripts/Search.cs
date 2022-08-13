@@ -25,6 +25,7 @@ public class Search : MonoBehaviour
 
     private bool activado = false;
 
+    private bool fin = false;
 
     [Header("En zona")]
     public bool enZona = false;
@@ -51,7 +52,7 @@ public class Search : MonoBehaviour
                     indicatorTimer = 0;
                     radialIndicator.fillAmount = 0;
                     radialIndicator.enabled = false;
-                    myevent.Invoke();
+                    if(myevent!=null)myevent.Invoke();
                     activado = true;
                     GameObject.Find("exclama").gameObject.transform.localScale = new Vector3(0, 0, 0);
                 }
@@ -93,15 +94,20 @@ public class Search : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("entro");
         enZona = true;
+    }
+
+    public void Fin() {
+        fin = true;
     }
 
     void OnTriggerExit(Collider collision)
     {
-        Debug.Log("salgo");
         GameObject.Find("exclama").gameObject.transform.localScale = new Vector3(0, 0, 0);
         enZona = false;
-        activa(false);
+        if (!fin)
+        {
+            activa(false);
+        }
     }
 }

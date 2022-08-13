@@ -178,6 +178,7 @@ public class InventoryManager : MonoBehaviour
                     Debug.Log("usar");
                 }
                 else if (optionSelected == 1) {
+                    CombineItem();
                     Debug.Log("Combinar");
                 }
             }
@@ -256,7 +257,6 @@ public class InventoryManager : MonoBehaviour
             aux = aux/3;
         }
 
-        Debug.Log("menukey" + MenuKeys.Count);
         switch (optionV) {
             case 0:
                 //if (optionH < 1 || optionH > MenuBasic.Count ) { break; }
@@ -376,6 +376,9 @@ public class InventoryManager : MonoBehaviour
     
     public void Show() {
 
+
+        gameObject.GetComponent<Combinations>().CalculatePositions();
+
         inventPanel.SetActive(true);
         showing = true;
         selected = false;
@@ -471,6 +474,28 @@ public class InventoryManager : MonoBehaviour
         else if (optionV == 3)
         {
             Keys[optionH].Use();
+        }
+
+    }
+
+    public void CombineItem()
+    {
+
+        if (optionV == 0)
+        {
+            Basics[optionH].Combine();
+        }
+        else if (optionV == 1)
+        {
+            Consumibles[optionH].Combine();
+        }
+        else if (optionV == 2)
+        {
+            Crystals[optionH].Combine();
+        }
+        else if (optionV == 3)
+        {
+            Keys[optionH].Combine();
         }
 
     }

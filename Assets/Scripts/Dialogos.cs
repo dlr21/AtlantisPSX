@@ -33,14 +33,7 @@ public class Dialogos : MonoBehaviour
     void Update()
     {
 
-        if (enZona) {
-            if (Input.GetKeyDown("e") && !leyendo)
-            {
-                Hola();
-                //mirar a quien hablas
-                pc.Dialog(new Vector3(transform.position.x, 0, transform.position.z));
-            }
-        }
+        EmpezarLectura(true,false);
 
         //clic al leer 
         if (Input.GetMouseButtonDown(0) && leyendo || inputCorrecto()) {
@@ -52,6 +45,18 @@ public class Dialogos : MonoBehaviour
             {
                 StopAllCoroutines();
                 textComponent.text = lines[index];
+            }
+        }
+    }
+
+    public void EmpezarLectura(bool a,bool activ) {
+        if (enZona==a)
+        {
+            if ((Input.GetKeyDown("e") && !leyendo) || activ)
+            {
+                Hola();
+                //mirar a quien hablas
+                pc.Dialog(new Vector3(transform.position.x, 0, transform.position.z));
             }
         }
     }

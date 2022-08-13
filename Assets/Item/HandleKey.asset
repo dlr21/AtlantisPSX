@@ -16,6 +16,7 @@ MonoBehaviour:
   itemName: HandleKey
   type: 3
   value: 0
-  icon: {fileID: 0}
+  rotationPlus: {x: 0, y: 0, z: 0, w: 0}
+  icon: {fileID: 771258965030808091, guid: 80ba64a41afc19b40aa1438efaa3cd2d, type: 3}
   description: Given to you by Whitmore in Level 1 and must be combined with "End
     of a Broken Key" that is found in a desk in the boiler room.

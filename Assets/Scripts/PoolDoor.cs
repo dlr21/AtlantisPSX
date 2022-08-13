@@ -8,9 +8,7 @@ public class PoolDoor : MonoBehaviour
     private GameObject player;
     private Animator door;
     public PlayerController pc;
-
-    [SerializeField]private string llave="key_lvl1";
-    // Start is called before the first frame update
+    
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -25,8 +23,11 @@ public class PoolDoor : MonoBehaviour
             door.SetTrigger("Open");
             pc.UsedKey();
             gameObject.GetComponent<Search>().activa(true);
+            gameObject.GetComponent<Search>().Fin();
         }
         else {
+            pc.ExitMenu();
+            gameObject.GetComponentInParent<Dialogos>().EmpezarLectura(false,true);
             Debug.Log("No se puede USAR AQUI");
         }
         
