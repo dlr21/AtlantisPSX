@@ -19,10 +19,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float verticalMove;
     [SerializeField] private Vector3 playerInput;
 
-    [Header("MainCamara")]
+    [Header("Camaras")]
     public Camera cam;
     [SerializeField] private Vector3 camForward;
     [SerializeField] private Vector3 camRight;
+    public FirstPerson fpScript;
+    public Camera fpCam;
+    public string botonPrimeraPersona = "Fire2";
+    public string botonPausaInventario = "Cancel";
 
     private CharacterController player;
     private Vector3 playerMove;
@@ -40,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public bool running;
     public bool pause;
     public bool dialog;
+    public bool firstPerson;
 
 
     private void Start()
@@ -49,6 +54,7 @@ public class PlayerController : MonoBehaviour
         running = false;
         colgando = false;
         dialog = false;
+        firstPerson = false;
         state = 1;
         auxplayerSpeed = playerSpeed;
         auxfallSpeed = fallSpeed;
@@ -59,22 +65,25 @@ public class PlayerController : MonoBehaviour
     {
 
         MenuInputs();
+        InputFP();
 
         if (!pause)
         {
-            Inputs();
-            camDirection();
-            Move();
+            if (!firstPerson) {
+                InputMove();
+                camDirection();
+                Move();
+            }
         }
-        else if (pause) {
+        /*else if (pause) {
             if (dialog) {
 
             }
-        }
+        }*/
     }
 
     //movimiento con arreglo diagonal
-    private void Inputs() {
+    private void InputMove() {
 
         isRunning();
 
@@ -91,15 +100,26 @@ public class PlayerController : MonoBehaviour
     private void MenuInputs()
     {
         
-        if (Input.GetButtonDown("Cancel") && pause)//salir de pausa
+        if (Input.GetButtonDown(botonPausaInventario) && pause)//salir de pausa
         {
             ExitMenu();
-        }else if (Input.GetButtonDown("Cancel") && !pause)//entrar en pausa
+        }else if (Input.GetButtonDown(botonPausaInventario) && !pause)//entrar en pausa
         {
             PauseGame();
             pause = true;
             ShowInventory();
         }
+
+    }
+
+    private void InputFP() {
+        if (Input.GetButtonDown(botonPrimeraPersona))
+        {
+            FirstPerson(true);
+        }else if(Input.GetButtonUp(botonPrimeraPersona)){
+            FirstPerson(false);
+        }
+            
 
     }
 
@@ -347,7 +367,26 @@ public class PlayerController : MonoBehaviour
         InventoryManager.instance.Hide();
     }
 
+    public void FirstPerson(bool f) {
+        if (f)
+        {
+            firstPerson = true;
+            //DESACTIVAR HUD
+            fpScript.Reset();
+            cam.gameObject.SetActive(false);
+            fpCam.gameObject.SetActive(true);
 
+        }
+        else {
+            firstPerson = false;
+            //ACTIVAR HUD
+            fpScript.Reset();
+            fpCam.gameObject.SetActive(false);
+            cam.gameObject.SetActive(true);
+
+        }
+
+    }
 
 
 
