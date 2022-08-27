@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   itemName: Compass
+  type: 0
   value: 0
-  icon: {fileID: 0}
+  rotationPlus: {x: 0, y: 0, z: 0, w: 0}
+  icon: {fileID: 1244117438931950448, guid: ff77e95950ec08941be0c8f3e07c1a12, type: 3}
   description: This item is acquired in Level 1 and may be used by any character. 
     It tells the direction you are facing; however, it isn't much use in this walkthrough
     because I never make mention to those trivial, yet helpful direction labels like

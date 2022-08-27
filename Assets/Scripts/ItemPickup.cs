@@ -12,6 +12,9 @@ public class ItemPickup : MonoBehaviour
 
         if (item.type != 4)
         {
+            if (item.id == 0) {
+                Efecto();
+            }
             InventoryManager.instance.Add(item);
             Destroy(gameObject);
         }
@@ -21,7 +24,12 @@ public class ItemPickup : MonoBehaviour
     }
 
     void Efecto() {
-        if (item.id == 1) {//whitmore portfolio??
+        if (item.id == 0)//Compass
+        {
+            GameObject.Find("Ellen").GetComponent<Dialogos>().inputExtern();
+        }
+        else if (item.id == 1)//whitmore portfolio??
+        {
 
         }
         else if (item.id == 27) {//golden heart

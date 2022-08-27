@@ -31,10 +31,10 @@ public class PlayerData : MonoBehaviour
             InventoryManager.instance.AtacarItem();
         }
 
-        if (Input.anyKey)
+       /* if (Input.anyKey)
         {
-            //Debug.Log(Input.inputString);
-        }
+            Debug.Log(Input.inputString);
+        }*/
     }
 
     public void MoreCrystals() {

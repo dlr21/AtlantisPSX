@@ -35,6 +35,7 @@ public class Examinados : MonoBehaviour
     public void lvl1_key_desk()
     {
         InventoryManager.instance.Add(keyPart);
+        GameObject.Find("Ellen").GetComponent<Dialogos>().inputExtern();
         desk.Open();
         Debug.Log("Recogiendo Llave de la mesa");
     }

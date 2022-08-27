@@ -18,7 +18,6 @@ public class Dialogos : MonoBehaviour
     public bool input;
     public int indexInput;
 
-
     private int index;
     // Start is called before the first frame update
     void Start()
@@ -27,6 +26,7 @@ public class Dialogos : MonoBehaviour
         leyendo = false;
         input = false;
         indexInput = 0;
+        index=0;
     }
 
     // Update is called once per frame
@@ -36,10 +36,11 @@ public class Dialogos : MonoBehaviour
         EmpezarLectura(true,false);
 
         //clic al leer 
-        if (Input.GetMouseButtonDown(0) && leyendo || inputCorrecto()) {
-            if (textComponent.text == lines[index]) {
+        if (Input.GetMouseButtonDown(0) && leyendo) {
 
-                if (!input) NextLine();
+            if (textComponent.text == lines[index]) {
+                
+                NextLine();
             }
             else
             {
@@ -61,18 +62,13 @@ public class Dialogos : MonoBehaviour
         }
     }
 
-    bool inputCorrecto() {
-        if (input && Input.GetKeyDown(ch.inputWait(indexInput)))
-        {
-            indexInput++;
-            input = false;
-            return true;
-        }
-        return false;
+
+    public void inputExtern() {
+        indexInput++;
+        index++;
     }
 
     void StartDialogue() {
-        index = 0;
         StartCoroutine(typeLine());
     }
 
@@ -89,20 +85,30 @@ public class Dialogos : MonoBehaviour
         {
             index++;
             textComponent.text = string.Empty;
-            if (ch.inputIndex(index)) {
-                input = true;
+            if (ch.inputIndex(index))
+            {
+                index--;
+                StopDialog();
             }
-            StartCoroutine(typeLine());
+            else {
+                StartCoroutine(typeLine());
+            }
+            
         }
         else {
-            dialog.SetActive(false);
-            leyendo = false;
-            textComponent.text = string.Empty;
-            pc.Dialog(Vector3.zero);
+            StopDialog();
         }
     }
 
+    void StopDialog() {
+        dialog.SetActive(false);
+        leyendo = false;
+        textComponent.text = string.Empty;
+        pc.Dialog(Vector3.zero);
+    }
+
     void Hola() {
+        textComponent.text = string.Empty;
         dialog.SetActive(true);
         leyendo = true;
         StartDialogue();
