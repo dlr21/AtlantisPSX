@@ -200,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 40423833}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Columnas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,6 +284,10 @@ PrefabInstance:
     - target: {fileID: 1166630950117764, guid: fb65e22a45c0add40b13227c77e0ba5e, type: 3}
       propertyPath: m_Name
       value: Estanteria_small
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166630950117764, guid: fb65e22a45c0add40b13227c77e0ba5e, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4187084333120506, guid: fb65e22a45c0add40b13227c77e0ba5e, type: 3}
       propertyPath: m_RootOrder
@@ -375,7 +379,7 @@ GameObject:
   - component: {fileID: 91470587}
   - component: {fileID: 91470586}
   - component: {fileID: 91470585}
-  m_Layer: 11
+  m_Layer: 3
   m_Name: Ledge (1)
   m_TagString: Ledge
   m_Icon: {fileID: 0}
@@ -528,6 +532,10 @@ PrefabInstance:
     - target: {fileID: 1676271019557672, guid: 45e9ce73a615ed041b438e98477c70f2, type: 3}
       propertyPath: m_Name
       value: dfk_pillar_large_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676271019557672, guid: 45e9ce73a615ed041b438e98477c70f2, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4689675250946980, guid: 45e9ce73a615ed041b438e98477c70f2, type: 3}
       propertyPath: m_RootOrder
@@ -783,8 +791,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: -0.032053594, y: -0.47016603, z: -0.017090041, w: 0.88183016}
-  m_LocalPosition: {x: -5.839382, y: 4.9779196, z: -2.7946074}
+  m_LocalRotation: {x: 0.16583939, y: -0.46209294, z: 0.088420704, w: 0.86668867}
+  m_LocalPosition: {x: -3.348456, y: 7.1779194, z: -4.4665184}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -886,7 +894,7 @@ GameObject:
   - component: {fileID: 330762782}
   - component: {fileID: 330762783}
   - component: {fileID: 330762784}
-  m_Layer: 11
+  m_Layer: 3
   m_Name: Ledge
   m_TagString: Ledge
   m_Icon: {fileID: 0}
@@ -983,6 +991,10 @@ PrefabInstance:
     - target: {fileID: 1586118233040630, guid: 35515bf651213aa4a96440a5be9bcea7, type: 3}
       propertyPath: m_Name
       value: dfk_table_large_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586118233040630, guid: 35515bf651213aa4a96440a5be9bcea7, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4096413349522120, guid: 35515bf651213aa4a96440a5be9bcea7, type: 3}
       propertyPath: m_RootOrder
@@ -1236,6 +1248,10 @@ PrefabInstance:
     - target: {fileID: 1166630950117764, guid: fb65e22a45c0add40b13227c77e0ba5e, type: 3}
       propertyPath: m_Name
       value: Estanteria (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166630950117764, guid: fb65e22a45c0add40b13227c77e0ba5e, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4187084333120506, guid: fb65e22a45c0add40b13227c77e0ba5e, type: 3}
       propertyPath: m_RootOrder
@@ -2042,7 +2058,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 576032594}
-  m_LocalRotation: {x: 3e-45, y: -0.47047654, z: -0, w: 0.88241255}
+  m_LocalRotation: {x: 0.18157656, y: -0.46040824, z: 0.09681131, w: 0.8635287}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2273,6 +2289,7 @@ MonoBehaviour:
   ch: {fileID: 787382452}
   input: 0
   indexInput: 0
+  index: 0
 --- !u!1 &613202871
 GameObject:
   m_ObjectHideFlags: 0
@@ -2527,6 +2544,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: dfk_pillar_large_02 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1676271019557672, guid: 45e9ce73a615ed041b438e98477c70f2, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4689675250946980, guid: 45e9ce73a615ed041b438e98477c70f2, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -2743,14 +2764,14 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0
+    Value: 0.5
     m_SpeedMode: 0
     m_MaxSpeed: 2
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
-    m_InvertInput: 0
+    m_InvertInput: 1
     m_MinValue: 0
     m_MaxValue: 1
     m_Wrap: 0
@@ -2774,7 +2795,7 @@ MonoBehaviour:
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
     m_InputAxisValue: 0
-    m_InvertInput: 1
+    m_InvertInput: 0
     m_MinValue: -180
     m_MaxValue: 180
     m_Wrap: 1
@@ -2801,7 +2822,7 @@ MonoBehaviour:
     m_Radius: 3
   - m_Height: 2.2
     m_Radius: 5
-  - m_Height: 0
+  - m_Height: -0.5
     m_Radius: 2
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
@@ -2816,7 +2837,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 774758472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.839382, y: 4.9779196, z: -2.7946074}
+  m_LocalPosition: {x: -3.348456, y: 7.1779194, z: -4.4665184}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2855,7 +2876,7 @@ MonoBehaviour:
   m_SmoothingTime: 1
   m_Damping: 2
   m_DampingWhenOccluded: 0
-  m_OptimalTargetDistance: 2
+  m_OptimalTargetDistance: 0
 --- !u!1 &787382444 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8513fba7884fe8d459536121bea7184a,
@@ -2974,6 +2995,7 @@ MonoBehaviour:
   personaje: Mylo
   indexInput: 
   icon: {fileID: 0}
+  avance: {fileID: 0}
 --- !u!4 &818163033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4639468573929742, guid: 2d5b6c02ec2775d429c82df805b4989b,
@@ -3046,6 +3068,10 @@ PrefabInstance:
     - target: {fileID: 1487997010286614, guid: 48f78403d56e3754599ba15505ef2348, type: 3}
       propertyPath: m_Name
       value: Akfombra
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487997010286614, guid: 48f78403d56e3754599ba15505ef2348, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4303064943894126, guid: 48f78403d56e3754599ba15505ef2348, type: 3}
       propertyPath: m_RootOrder
@@ -3536,6 +3562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: dfk_pillar_large_02 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1676271019557672, guid: 45e9ce73a615ed041b438e98477c70f2, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4689675250946980, guid: 45e9ce73a615ed041b438e98477c70f2, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3594,6 +3624,10 @@ PrefabInstance:
     - target: {fileID: 1166630950117764, guid: fb65e22a45c0add40b13227c77e0ba5e, type: 3}
       propertyPath: m_Name
       value: Estanteria (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166630950117764, guid: fb65e22a45c0add40b13227c77e0ba5e, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4187084333120506, guid: fb65e22a45c0add40b13227c77e0ba5e, type: 3}
       propertyPath: m_RootOrder
@@ -3671,7 +3705,7 @@ GameObject:
   - component: {fileID: 1023077857}
   - component: {fileID: 1023077856}
   - component: {fileID: 1023077855}
-  m_Layer: 11
+  m_Layer: 3
   m_Name: Ledge
   m_TagString: Ledge
   m_Icon: {fileID: 0}
@@ -4013,7 +4047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 0, z: -2}
+  m_FollowOffset: {x: 0, y: 2.2, z: -5}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -4077,6 +4111,10 @@ PrefabInstance:
     - target: {fileID: 1676271019557672, guid: 45e9ce73a615ed041b438e98477c70f2, type: 3}
       propertyPath: m_Name
       value: dfk_pillar_large_02 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676271019557672, guid: 45e9ce73a615ed041b438e98477c70f2, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4689675250946980, guid: 45e9ce73a615ed041b438e98477c70f2, type: 3}
       propertyPath: m_RootOrder
@@ -4397,6 +4435,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2042911267810100896, guid: 93831b73b33b2724e93af17cb8d2f0f4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2042911267810100898, guid: 93831b73b33b2724e93af17cb8d2f0f4,
         type: 3}
       propertyPath: m_Size.x
@@ -4569,6 +4612,7 @@ MonoBehaviour:
   ch: {fileID: 0}
   input: 0
   indexInput: 0
+  index: 0
 --- !u!1 &1177390089 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8728165786454742873, guid: 175ca56356579d542a6702c81eabc653,
@@ -4597,7 +4641,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1186395634}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cajas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4710,7 +4754,7 @@ GameObject:
   - component: {fileID: 1219691774}
   - component: {fileID: 1219691773}
   - component: {fileID: 1219691772}
-  m_Layer: 11
+  m_Layer: 3
   m_Name: Ledge (1)
   m_TagString: Ledge
   m_Icon: {fileID: 0}
@@ -5473,6 +5517,85 @@ PrefabInstance:
       insertIndex: 8
       addedObject: {fileID: 1056160953}
   m_SourcePrefab: {fileID: 100100000, guid: 4547ad51d9f65c54794485f4428c6686, type: 3}
+--- !u!1 &1326416721 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4547ad51d9f65c54794485f4428c6686,
+    type: 3}
+  m_PrefabInstance: {fileID: 1326416720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1326416722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326416721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf847127ed32bf9448115611a8e695e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lucesCaldera: {fileID: 2105935386}
+  puertaPiscina: {fileID: 1158533961}
+  brujula: {fileID: 4823142052901938185}
+  events:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1326416722}
+        m_TargetAssemblyTypeName: AvanceLVL1, Assembly-CSharp
+        m_MethodName: Hola
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1326416722}
+        m_TargetAssemblyTypeName: AvanceLVL1, Assembly-CSharp
+        m_MethodName: Brujula
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1326416722}
+        m_TargetAssemblyTypeName: AvanceLVL1, Assembly-CSharp
+        m_MethodName: CombinarLlave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1326416722}
+        m_TargetAssemblyTypeName: AvanceLVL1, Assembly-CSharp
+        m_MethodName: Irse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  i: 0
 --- !u!1 &1328870834
 GameObject:
   m_ObjectHideFlags: 3
@@ -5547,7 +5670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 0, z: -2}
+  m_FollowOffset: {x: 0, y: 2.2, z: -5}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -5787,8 +5910,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personaje: Ellen
-  indexInput: 06000000080000000a0000001200000014000000
+  indexInput: 0000000006000000080000000a0000001200000014000000
   icon: {fileID: 0}
+  avance: {fileID: 1326416721}
 --- !u!114 &1428410599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5824,7 +5948,8 @@ MonoBehaviour:
     carpetas de la tripulaci\xF3n que he perdido, y un trozo de llave rota. Est\xE1
     oscuro, as\xED que pulsa el bot\xF3n de buscar para encender la luz. "
   - "Bravo! \xA1Encontraste los objetos perdidos! Mira como funciona la mochila. "
-  - "Primero, pulsa el bot\xF3n SELECT para entrar en la mochila.Usar Documentos------"
+  - "Primero, pulsa el bot\xF3n SELECT para entrar en la mochila. Busca los documentos
+    y pulsa Usar."
   - "Gracias. Este es el capit\xE1n Rourke. Est\xE1 al mando de la expedici\xF3n
     y ayudar\xE1 a resolver los problemas que te surjan."
   - Teniente Helga Sinclair. Segunda de a bordo en las expediciones.
@@ -5841,7 +5966,7 @@ MonoBehaviour:
   - "Para entrar en la habitaci\xF3n necesitar\xE1s una llave. Esta es la mitad que
     te falta para completar la mitad que encontraste en la sala de la caldera. Ahora
     que tienes las dos, comb\xEDnalas para que puedas usar la llave. Para eso, tienes
-    que ir a la mochila.Combinar Llave-----"
+    que ir a la mochila."
   - "\xA1Bien! Muchos objetos pueden combinarse y se convertir\xE1n en objetos m\xE1s
     \xFAtiles."
   - "Prueba la llave en esa puerta de all\xED. Abre la mochila, selecciona la llave
@@ -5853,12 +5978,13 @@ MonoBehaviour:
     al ascensor de mi estudio y podr\xE1s emprender la marcha. Aunque si te quedas
     un ratito, te contar\xE9 un secreto. Si buscas en el atril en la sala de la caldera,
     encontrar\xE1s una sorpresa, \xA1Hasta luego!"
-  speed: 0.2
+  speed: 0.5
   leyendo: 0
   enZona: 0
   ch: {fileID: 1428410596}
   input: 0
   indexInput: 0
+  index: 0
 --- !u!4 &1460252307 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4303064943894126, guid: 48f78403d56e3754599ba15505ef2348,
@@ -6141,7 +6267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1702137926}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DECORACION
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6247,7 +6373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 0, z: -2}
+  m_FollowOffset: {x: 0, y: 2.2, z: -5}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -6664,6 +6790,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cajas1
       objectReference: {fileID: 0}
+    - target: {fileID: 1173274803263230, guid: 17754e0911f39c44396302de9cfb8730, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4419703308680714, guid: 17754e0911f39c44396302de9cfb8730, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -6722,6 +6852,10 @@ PrefabInstance:
     - target: {fileID: 1676271019557672, guid: 45e9ce73a615ed041b438e98477c70f2, type: 3}
       propertyPath: m_Name
       value: dfk_pillar_large_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676271019557672, guid: 45e9ce73a615ed041b438e98477c70f2, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4689675250946980, guid: 45e9ce73a615ed041b438e98477c70f2, type: 3}
       propertyPath: m_RootOrder
@@ -6839,7 +6973,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890822121}
-  m_LocalRotation: {x: -0.032053594, y: -0.47016603, z: -0.01709004, w: 0.88183016}
+  m_LocalRotation: {x: 0.1500891, y: -0.46362102, z: 0.080023095, w: 0.86955464}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6995,6 +7129,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: dfk_crates_covered_blue_05
       objectReference: {fileID: 0}
+    - target: {fileID: 1011635482715168, guid: 2d5b6c02ec2775d429c82df805b4989b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4639468573929742, guid: 2d5b6c02ec2775d429c82df805b4989b, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7053,6 +7191,10 @@ PrefabInstance:
     - target: {fileID: 1487997010286614, guid: 48f78403d56e3754599ba15505ef2348, type: 3}
       propertyPath: m_Name
       value: Alfombra
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487997010286614, guid: 48f78403d56e3754599ba15505ef2348, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4303064943894126, guid: 48f78403d56e3754599ba15505ef2348, type: 3}
       propertyPath: m_RootOrder
@@ -7126,6 +7268,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: dfk_crates_covered_white_05
       objectReference: {fileID: 0}
+    - target: {fileID: 1980101458614734, guid: 903f8834c44e93c449921107261d5052, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4454088914950446, guid: 903f8834c44e93c449921107261d5052, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7184,6 +7330,10 @@ PrefabInstance:
     - target: {fileID: 1166630950117764, guid: fb65e22a45c0add40b13227c77e0ba5e, type: 3}
       propertyPath: m_Name
       value: Estanteria (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166630950117764, guid: fb65e22a45c0add40b13227c77e0ba5e, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4187084333120506, guid: fb65e22a45c0add40b13227c77e0ba5e, type: 3}
       propertyPath: m_RootOrder
@@ -7403,6 +7553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c19ea78dd33a35b4483cf29341f755c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  both: 0
   showing: 0
   selected: 0
   inventPanel: {fileID: 907479411}
@@ -7638,6 +7789,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Estanteria_small
       objectReference: {fileID: 0}
+    - target: {fileID: 1166630950117764, guid: fb65e22a45c0add40b13227c77e0ba5e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4187084333120506, guid: fb65e22a45c0add40b13227c77e0ba5e, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7785,7 +7940,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118827985}
-  m_LocalRotation: {x: -0.016050631, y: -0.4703987, z: -0.008557727, w: 0.8822666}
+  m_LocalRotation: {x: 0.16583937, y: -0.46209297, z: 0.08842069, w: 0.86668867}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7810,6 +7965,11 @@ PrefabInstance:
     - target: {fileID: 2042911267810100896, guid: 93831b73b33b2724e93af17cb8d2f0f4,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042911267810100896, guid: 93831b73b33b2724e93af17cb8d2f0f4,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2042911267810100898, guid: 93831b73b33b2724e93af17cb8d2f0f4,
@@ -8423,6 +8583,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Compass
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244117438931950448, guid: ff77e95950ec08941be0c8f3e07c1a12,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1875800460352815562, guid: ff77e95950ec08941be0c8f3e07c1a12,
         type: 3}

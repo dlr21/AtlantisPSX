@@ -18,7 +18,7 @@ public class Dialogos : MonoBehaviour
     public bool input;
     public int indexInput;
 
-    private int index;
+    [SerializeField]private int index;
     // Start is called before the first frame update
     void Start()
     {

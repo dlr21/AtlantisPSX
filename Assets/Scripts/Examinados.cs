@@ -13,7 +13,7 @@ public class Examinados : MonoBehaviour
     [Header("Item keyPart lvl1")]
     public DeskKey desk;
     public Item keyPart;
-    
+
 
 
     public void lvl1_luz() {
@@ -35,7 +35,7 @@ public class Examinados : MonoBehaviour
     public void lvl1_key_desk()
     {
         InventoryManager.instance.Add(keyPart);
-        GameObject.Find("Ellen").GetComponent<Dialogos>().inputExtern();
+        InventoryManager.instance.WhitmoreKey();
         desk.Open();
         Debug.Log("Recogiendo Llave de la mesa");
     }

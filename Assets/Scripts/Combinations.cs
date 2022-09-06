@@ -53,6 +53,7 @@ public class Combinations : MonoBehaviour
         {
             b = g;
             comb2 = Instantiate(g.icon, pos2, Camera.main.transform.rotation);
+
             if (IntentaCombinar())
             {   
                 Debug.Log("AnimacionCombinar");
@@ -72,11 +73,12 @@ public class Combinations : MonoBehaviour
 
     bool IntentaCombinar() {
         Debug.Log(a.id + " " + b.id);
+
         //HandleKey y EndKey
         if ((a.id == 2 && b.id == 4) || (b.id == 2 && a.id == 4)) {
 
             CombinacionEnInventario(oldKey);
-
+            GameObject.Find("Ellen").GetComponent<Dialogos>().inputExtern();
             return true;
         }
        

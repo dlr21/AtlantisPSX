@@ -6,13 +6,15 @@ public class ItemPickup : MonoBehaviour
 {
     public Item item;
 
+
     // Update is called once per frame
     void PickUp()
     {
 
         if (item.type != 4)
         {
-            if (item.id == 0) {
+            if (item.id == 0 || item.id==1 )
+            {
                 Efecto();
             }
             InventoryManager.instance.Add(item);
@@ -30,7 +32,7 @@ public class ItemPickup : MonoBehaviour
         }
         else if (item.id == 1)//whitmore portfolio??
         {
-
+            InventoryManager.instance.WhitmoreKey();
         }
         else if (item.id == 27) {//golden heart
             GameObject.Find("Player").GetComponent<PlayerData>().LifeUp();
@@ -50,4 +52,5 @@ public class ItemPickup : MonoBehaviour
             PickUp();
         }
     }
+
 }

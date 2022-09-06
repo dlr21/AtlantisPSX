@@ -7,11 +7,13 @@ TagManager:
   - Ledge
   - Floor
   - Water
+  - Enemy
+  - Items
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Decoration
   - Water
   - UI
   - 

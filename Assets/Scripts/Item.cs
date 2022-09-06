@@ -35,7 +35,7 @@ public class Item : ScriptableObject
         {
            
         }
-        else if (id == 1) //WhitmorePortfolio?
+        else if (id == 1) //WhitmorePortfolio
         {
             GameObject.Find("Ellen").GetComponent<Dialogos>().inputExtern();//cuenta todos los personajes
         }

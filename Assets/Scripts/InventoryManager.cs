@@ -5,6 +5,7 @@ using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
+    public int both;
 
     public static InventoryManager instance;
     public bool showing,selected;
@@ -376,7 +377,6 @@ public class InventoryManager : MonoBehaviour
     
     public void Show() {
 
-
         gameObject.GetComponent<Combinations>().CalculatePositions();
 
         inventPanel.SetActive(true);
@@ -560,6 +560,13 @@ public class InventoryManager : MonoBehaviour
                 MenuKeys[i].transform.position = posaux;
                 posaux = posaux + Camera.main.transform.right / 3;
             }
+        }
+    }
+
+    public void WhitmoreKey() {
+        both++;
+        if (both == 2) {
+            GameObject.Find("Ellen").GetComponent<Dialogos>().inputExtern();
         }
     }
 }
