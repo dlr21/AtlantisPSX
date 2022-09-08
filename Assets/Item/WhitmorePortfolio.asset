@@ -16,7 +16,8 @@ MonoBehaviour:
   itemName: WhitmorePortfolio
   type: 3
   value: 0
-  icon: {fileID: 0}
+  rotationPlus: {x: 0, y: 0, z: 0, w: 0}
+  icon: {fileID: 7179303007547609330, guid: 4102d25d4d76642449041c54b1c07014, type: 3}
   description: This item is acquired in Level 1 in the boiler room and is only used
     to give back to Whitmore to continue with your tutorial of the game of how to
     use items.

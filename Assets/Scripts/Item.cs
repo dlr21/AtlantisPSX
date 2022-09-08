@@ -33,12 +33,9 @@ public class Item : ScriptableObject
     {
         if (id == 0) //Compass
         {
-           
+            Debug.Log("Por hacer");
         }
-        else if (id == 1) //WhitmorePortfolio
-        {
-            GameObject.Find("Ellen").GetComponent<Dialogos>().inputExtern();//cuenta todos los personajes
-        }
+
         else if (id == 6) //Boomerang 
         {
             GameObject.Find("Player").GetComponent<PrimaryWeapon>().Boomerang();
@@ -88,8 +85,9 @@ public class Item : ScriptableObject
 
     void UseKey()
     {
-        if (id == 100) {
-
+        if (id == 1) //WhitmorePortfolio
+        {
+            GameObject.Find("Ellen").GetComponent<Dialogos>().inputExtern();//cuenta todos los personajes
         }
         else if (id == 5) //oldkey//pool_lvl1
         {
@@ -156,8 +154,6 @@ public class Item : ScriptableObject
         {
             NoOption();
         }
-
-
     }
     void CombineConsumible() {
         if (id == 100)

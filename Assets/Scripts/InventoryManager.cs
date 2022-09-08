@@ -524,7 +524,6 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-
     void reposicionarMenuV() {
         Vector3 pos = Camera.main.transform.position + Camera.main.transform.forward;
         Vector3 posaux = pos;
@@ -569,4 +568,5 @@ public class InventoryManager : MonoBehaviour
             GameObject.Find("Ellen").GetComponent<Dialogos>().inputExtern();
         }
     }
+
 }
