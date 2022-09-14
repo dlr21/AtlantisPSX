@@ -10,12 +10,17 @@ public class Item : ScriptableObject
     public int id;
     public string itemName;
     [Header("0 Basico 1 Consumible 2 Crystal 3 Key")]
-    public int type; //0basic,1 consumible
+    public int type;
     public int value;
+
     public Quaternion rotationPlus;
+
     public GameObject icon;
+    private GameObject player;
+    private GameObject npc;
 
     public string description;
+
 
     public void Use() {
         if (type == 0) {
@@ -87,12 +92,28 @@ public class Item : ScriptableObject
     {
         if (id == 1) //WhitmorePortfolio
         {
-            GameObject.Find("Ellen").GetComponent<Dialogos>().inputExtern();//cuenta todos los personajes
+            GameObject ellen = GameObject.Find("Ellen");
+            if (ellen.GetComponent<Dialogos>().enZona)
+            {
+                ellen.GetComponent<Dialogos>().inputExtern();//cuenta todos los personajes
+
+                GameObject.Find("Player").GetComponent<PlayerController>().ExitMenu();
+
+                InventoryManager.instance.Keys.Remove(this);
+                InventoryManager.instance.HandleKey();
+
+                ellen.GetComponent<Dialogos>().EmpezarLectura(true, true);
+            }
+            else {
+                Debug.Log("Deberia hablar con el señor Whitmore");
+            }
         }
         else if (id == 5) //oldkey//pool_lvl1
         {
             GameObject.Find("ExaminarPuerta").GetComponent<PoolDoor>().AbrirPuerta();
-        }else {
+        }
+        else
+        {
             NoOption();
         }
     }

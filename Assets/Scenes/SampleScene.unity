@@ -2215,7 +2215,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 576032594}
-  m_LocalRotation: {x: 0.18157658, y: -0.4604082, z: 0.09681131, w: 0.8635287}
+  m_LocalRotation: {x: 0.18157655, y: -0.46040824, z: 0.09681131, w: 0.86352867}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2375,7 +2375,6 @@ GameObject:
   m_Component:
   - component: {fileID: 602260763}
   - component: {fileID: 602260764}
-  - component: {fileID: 602260765}
   m_Layer: 0
   m_Name: PuertaPiscina
   m_TagString: Untagged
@@ -2423,30 +2422,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &602260765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 602260762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4223712a8dcdb9419fcf90da3e44b9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialog: {fileID: 2032534352}
-  textComponent: {fileID: 1900107829}
-  pc: {fileID: 787382445}
-  lines:
-  - hace falta USAR una llave
-  speed: 2
-  leyendo: 0
-  enZona: 0
-  ch: {fileID: 787382452}
-  input: 0
-  indexInput: 0
-  index: 0
 --- !u!1 &613202871
 GameObject:
   m_ObjectHideFlags: 0
@@ -3156,7 +3131,7 @@ MonoBehaviour:
   personaje: Mylo
   indexInput: 
   icon: {fileID: 0}
-  avance: {fileID: 0}
+  avance: {fileID: 1326416721}
 --- !u!4 &818163033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4639468573929742, guid: 2d5b6c02ec2775d429c82df805b4989b,
@@ -4770,11 +4745,11 @@ MonoBehaviour:
   textComponent: {fileID: 1900107829}
   pc: {fileID: 787382445}
   lines:
-  - No se puede USAR AQUI
-  speed: 2
+  - Hace falta usar una llave
+  speed: 0.02
   leyendo: 0
   enZona: 0
-  ch: {fileID: 0}
+  ch: {fileID: 787382452}
   input: 0
   indexInput: 0
   index: 0
@@ -6104,52 +6079,53 @@ MonoBehaviour:
   textComponent: {fileID: 1900107829}
   pc: {fileID: 787382445}
   lines:
-  - "Hola, Milo. Me llamo Whitmore. Tu abuelo y yo fuimos grandes amigos. Al morir,
+  - " Hola, Milo. Me llamo Whitmore. Tu abuelo y yo fuimos grandes amigos. Al morir,
     me pidi\xF3 que te entrenara para este viaje tan peligroso, as\xED que antes
     de irte, tiene que completar unas cuantas tareas. "
-  - "La primera es f\xE1cil, haz estos movimientos. Empezamos saltando. Pulsa Espacio. "
-  - "Luego , combate. Es m\xE1s f\xE1cil vencer a los enemigos con un buen gancho.
+  - " La primera es f\xE1cil, haz estos movimientos. Empezamos saltando. Pulsa Espacio. "
+  - " Luego , combate. Es m\xE1s f\xE1cil vencer a los enemigos con un buen gancho.
     Pulsa Clic Izq"
-  - "\xA1Muy bien! Para esquivar los objetos voladores tienes que agacharte. Pulsa
+  - " \xA1Muy bien! Para esquivar los objetos voladores tienes que agacharte. Pulsa
     C"
-  - "Por \xFAltimo, echa un vistazo alrededor cuando no sepas que hacer.  Pulsa R2."
-  - "Vamos por la siguiente tarea. Tu abuelo te dej\xF3 un paquete. Yo lo he metido
+  - " Por \xFAltimo, echa un vistazo alrededor cuando no sepas que hacer.  Pulsa
+    R2."
+  - " Vamos por la siguiente tarea. Tu abuelo te dej\xF3 un paquete. Yo lo he metido
     en una maleta para que est\xE9 seguro. Est\xE1 un poco alta, pero si saltas al
     lado de la estanter\xEDa, seguro que lo alcanzas. cuando la hayas encontrado
     ven a verme. "
-  - "Ah , la br\xFAjula. Tu abuelo me cont\xF3 que ten\xEDa una funci\xF3n especial.
+  - " Ah, la br\xFAjula. Tu abuelo me cont\xF3 que ten\xEDa una funci\xF3n especial.
     Quiz\xE1 aprendas a usarla en el viaje."
-  - "Ahora , hijo, para la tercera tarea, ve a la sala de la caldera y busca unas
+  - " Ahora , hijo, para la tercera tarea, ve a la sala de la caldera y busca unas
     carpetas de la tripulaci\xF3n que he perdido, y un trozo de llave rota. Est\xE1
     oscuro, as\xED que pulsa el bot\xF3n de buscar para encender la luz. "
-  - "Bravo! \xA1Encontraste los objetos perdidos! Mira como funciona la mochila. "
-  - "Primero, pulsa el bot\xF3n SELECT para entrar en la mochila. Busca los documentos
+  - " Bravo! \xA1Encontraste los objetos perdidos! Mira como funciona la mochila. "
+  - " Primero, pulsa el bot\xF3n SELECT para entrar en la mochila. Busca los documentos
     y pulsa Usar."
-  - "Gracias. Este es el capit\xE1n Rourke. Est\xE1 al mando de la expedici\xF3n
+  - " Gracias. Este es el capit\xE1n Rourke. Est\xE1 al mando de la expedici\xF3n
     y ayudar\xE1 a resolver los problemas que te surjan."
-  - Teniente Helga Sinclair. Segunda de a bordo en las expediciones.
-  - "En el viaje, necesitar\xE1s la ayuda de un equipo de expertos. \xA1Tenemos a 
-    la creme de la creme! Cuando los necesites, ll\xE1malos por radio cuando los
+  - ' Teniente Helga Sinclair. Segunda de a bordo en las expediciones.'
+  - " En el viaje, necesitar\xE1s la ayuda de un equipo de expertos. \xA1Tenemos
+    a  la creme de la creme! Cuando los necesites, ll\xE1malos por radio cuando los
     necesites. Este es el equipo: "
-  - "Vinny. Demoliciones se fug\xF3 de una prisi\xF3n turca."
-  - "Audrey. No te dejes enga\xF1ar por su edad. Ha reparado m\xE1s motores de los
+  - " Vinny. Demoliciones se fug\xF3 de una prisi\xF3n turca."
+  - " Audrey. No te dejes enga\xF1ar por su edad. Ha reparado m\xE1s motores de los
     que veremos t\xFA y yo en la vida."
-  - "Moliere. Geolog\xEDa y excavaciones. Tiene un sexto sentido para la suciedad."
-  - "Ha llegado la hora de la cuerta y \xFAltima tarea. Tengo por aqu\xED un artefacto
+  - " Moliere. Geolog\xEDa y excavaciones. Tiene un sexto sentido para la suciedad."
+  - " Ha llegado la hora de la cuerta y \xFAltima tarea. Tengo por aqu\xED un artefacto
     atlante: un bumer\xE1n. Puede que te sea \xFAtil. La cuesti\xF3n es que cuando
     lo prob\xE9 no funcion\xF3 y acab\xF3 en el fondo de mi acuario"
-  - "Para entrar en la habitaci\xF3n necesitar\xE1s una llave. Esta es la mitad que
-    te falta para completar la mitad que encontraste en la sala de la caldera. Ahora
-    que tienes las dos, comb\xEDnalas para que puedas usar la llave. Para eso, tienes
-    que ir a la mochila."
-  - "\xA1Bien! Muchos objetos pueden combinarse y se convertir\xE1n en objetos m\xE1s
+  - " Para entrar en la habitaci\xF3n necesitar\xE1s una llave. Esta es la mitad
+    que te falta para completar la mitad que encontraste en la sala de la caldera.
+    Ahora que tienes las dos, comb\xEDnalas para que puedas usar la llave. Para eso,
+    tienes que ir a la mochila."
+  - " \xA1Bien! Muchos objetos pueden combinarse y se convertir\xE1n en objetos m\xE1s
     \xFAtiles."
-  - "Prueba la llave en esa puerta de all\xED. Abre la mochila, selecciona la llave
+  - " Prueba la llave en esa puerta de all\xED. Abre la mochila, selecciona la llave
     y elige USAR. La puerta se abrir\xE1. Nos veremos cuando recuperes el bumer\xE1n.
     Bumeran--------"
-  - "Seguro que est\xE1s deseando probar el bumeran, ahora lo tienes a\xF1adido al
-    equipo. Para usarlo Pulsa Clic Derecho."
-  - "Bueno, pues esas son todas las tareas, Milo. Puedes salir cuando quieras. Vuelve
+  - " Seguro que est\xE1s deseando probar el bumeran, ahora lo tienes a\xF1adido
+    al equipo. Para usarlo Pulsa Clic Derecho."
+  - " Bueno, pues esas son todas las tareas, Milo. Puedes salir cuando quieras. Vuelve
     al ascensor de mi estudio y podr\xE1s emprender la marcha. Aunque si te quedas
     un ratito, te contar\xE9 un secreto. Si buscas en el atril en la sala de la caldera,
     encontrar\xE1s una sorpresa, \xA1Hasta luego!"
@@ -7736,11 +7712,12 @@ MonoBehaviour:
   showing: 0
   selected: 0
   inventPanel: {fileID: 907479411}
-  boomerang: {fileID: 0}
-  granades: {fileID: 0}
-  bolt: {fileID: 0}
-  flare: {fileID: 0}
-  rocks: {fileID: 0}
+  boomerang: {fileID: 11400000, guid: 528ae5126db74784494c85630b62d85d, type: 2}
+  granades: {fileID: 11400000, guid: 838fb19a6dec08d4e90e46db06277198, type: 2}
+  bolt: {fileID: 11400000, guid: d248675918a359f48912a35c350637f6, type: 2}
+  flare: {fileID: 11400000, guid: 31babc36876223d4e917eec1761b8a91, type: 2}
+  rocks: {fileID: 11400000, guid: 2a0339c0a88654f439cd670188342f3f, type: 2}
+  handleKey: {fileID: 11400000, guid: e9894ccf98230c946811626826c190ce, type: 2}
   Basics: []
   Consumibles: []
   Crystals: []

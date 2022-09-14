@@ -25,8 +25,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 camRight;
     public FirstPerson fpScript;
     public Camera fpCam;
-    public string botonPrimeraPersona = "Fire2";
-    public string botonPausaInventario = "Cancel";
+
+    [Header("Botones")]
+    public string botonPrimeraPersona = "Fire2";//clic derecgho
+    public string botonPausaInventario = "Cancel";//escape
 
     private CharacterController player;
     private Vector3 playerMove;

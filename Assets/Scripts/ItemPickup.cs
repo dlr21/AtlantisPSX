@@ -6,14 +6,13 @@ public class ItemPickup : MonoBehaviour
 {
     public Item item;
 
-
-    // Update is called once per frame
+    
     void PickUp()
     {
 
         if (item.type != 4)
         {
-            if (item.id == 0 || item.id==1 )
+            if (item.id == 0 || item.id==1 || item.id==6)
             {
                 Efecto();
             }
@@ -26,11 +25,11 @@ public class ItemPickup : MonoBehaviour
     }
 
     void Efecto() {
-        if (item.id == 0)//Compass
+        if (item.id == 0 || item.id == 6)//Compass o boomerang
         {
             GameObject.Find("Ellen").GetComponent<Dialogos>().inputExtern();
         }
-        else if (item.id == 1)//whitmore portfolio??
+        else if (item.id == 1)//whitmore portfolio
         {
             InventoryManager.instance.WhitmoreKey();
         }

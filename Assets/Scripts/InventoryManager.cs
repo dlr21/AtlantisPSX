@@ -8,28 +8,37 @@ public class InventoryManager : MonoBehaviour
     public int both;
 
     public static InventoryManager instance;
+
+    [Header("Items")]
     public bool showing,selected;
     public GameObject inventPanel;
     public Item boomerang, granades, bolt, flare, rocks;
+    public Item handleKey;
 
+    [Header("Listas internas")]
     public List<Item> Basics = new List<Item>();
     public List<Item> Consumibles = new List<Item>();
     public List<Item> Crystals = new List<Item>();
     public List<Item> Keys = new List<Item>();
 
+    [Header("Listas para los Menus")]
     public List<GameObject> MenuBasic = new List<GameObject>();
     public List<GameObject> MenuConsumibles = new List<GameObject>();
     public List<GameObject> MenuCrystals = new List<GameObject>();
     public List<GameObject> MenuKeys = new List<GameObject>();
 
+    [Header("Opciones VyH")]
     public int optionV;
     public int optionH;
 
     public int optionSelected;
+
+    [Header("Opciones Menus")]
     public GameObject nombre;
     public GameObject usar;
     public GameObject combinar;
     public GameObject seleccionar;
+
 
     private Color colText1;
     private Color colText2;
@@ -59,7 +68,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-   private string nombreItem() {
+    private string nombreItem() {
 
         if (optionV == 0)
         {
@@ -567,6 +576,10 @@ public class InventoryManager : MonoBehaviour
         if (both == 2) {
             GameObject.Find("Ellen").GetComponent<Dialogos>().inputExtern();
         }
+    }
+
+    public void HandleKey() {
+        Keys.Add(handleKey);
     }
 
 }
