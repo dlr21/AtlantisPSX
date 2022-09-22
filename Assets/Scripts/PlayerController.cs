@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     [Header("Botones")]
     public string botonPrimeraPersona = "Fire2";//clic derecgho
     public string botonPausaInventario = "Cancel";//escape
+    public string botonCorrer = "Fire3";//shift
 
     private CharacterController player;
     private Vector3 playerMove;

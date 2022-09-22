@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Playables;
 
 //Esta clase se encarga de desbloquear las cosas en su orden 
 public class AvanceLVL1 : MonoBehaviour
@@ -10,39 +11,42 @@ public class AvanceLVL1 : MonoBehaviour
     public GameObject lucesCaldera;
     public GameObject puertaPiscina;
     public GameObject brujula;
-    //public GameObject ascensor;
+
+    public GameObject ascensor;
+    public PlayableDirector puertasAscensor;
 
 
     [Header("Eventos")]
     public UnityEvent[] events;
-    [SerializeField]private int i;
+    [SerializeField]private int evento;
 
 
     public void Activa() {
-        if(i<events.Length)events[i].Invoke();
+        if(evento < events.Length)events[evento].Invoke();
+        
     }
 
     public void Hola() {
-        i++;
+        evento++;
         brujula.SetActive(true);
     }
 
     public void Brujula() {
-        i++;
+        evento++;
         lucesCaldera.SetActive(true);
     }
 
 
     public void CombinarLlave()
     {
-        i++;
+        evento++;
         puertaPiscina.SetActive(true);
     }
 
     public void Irse()
     {
-        i++;
-        //ascensor.SetActive(true);
+        evento++;
+        puertasAscensor.Play();
     }
 
 }
