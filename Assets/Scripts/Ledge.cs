@@ -14,12 +14,6 @@ public class Ledge : MonoBehaviour
         endPos = this.transform.position + endPos;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public Vector3 VectorReal(Transform player) {
         if (changeAXIS.x <= 0.0)
         {

@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour
 
     public void posClimb()
     {
-        PlayerPosition(ledge.endPos);
+        PlayerPosition(new Vector3(player.transform.position.x,ledge.endPos.y, player.transform.position.z) );
     }
 
     //direccion de la que mira la camara
@@ -369,7 +369,7 @@ public class PlayerController : MonoBehaviour
         InventoryManager.instance.Hide();
     }
 
-    public void FirstPerson(bool f) {
+    public void FirstPerson(bool f){
         if (f)
         {
             firstPerson = true;

@@ -72,7 +72,7 @@ public class InventoryManager : MonoBehaviour
 
         if (optionV == 0)
         {
-            if(optionH < Basics.Count && Basics[optionH]!=null) return Basics[optionH].name;
+            if (optionH < Basics.Count && Basics[optionH] != null) return Basics[optionH].name;
         }
         else if (optionV == 1) {
             if (optionH < Consumibles.Count && Consumibles[optionH] != null) return Consumibles[optionH].name;
@@ -344,17 +344,20 @@ public class InventoryManager : MonoBehaviour
     {
 
         if (it.type == 0) {
-            Basics.Add(it);
-        }
-        if (it.type == 1)
+            if (it.id != 6) {
+                Basics.Add(it);
+            }
+            else {
+                Basics.Insert(0, it);
+            }
+            
+        }else if (it.type == 1)
         {
             Consumibles.Add(it);
-        }
-        if (it.type == 2)
+        }else if (it.type == 2)
         {
             Crystals.Add(it);
-        }
-        if (it.type == 3)
+        }else if (it.type == 3)
         {
             Keys.Add(it);
         }
