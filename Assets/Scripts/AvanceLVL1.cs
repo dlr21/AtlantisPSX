@@ -20,33 +20,54 @@ public class AvanceLVL1 : MonoBehaviour
     public UnityEvent[] events;
     [SerializeField]private int evento;
 
+    [Header("Controle de repeticion")]
+    public bool holaControl;
+    public bool brujulaControl;
+    public bool combinarControl;
+    public bool irseControl;
+
 
     public void Activa() {
         if(evento < events.Length)events[evento].Invoke();
-        
     }
 
-    public void Hola() {
-        evento++;
-        brujula.SetActive(true);
+    public void Hola()
+    {
+        if (!holaControl) { 
+            evento++;
+            brujula.SetActive(true);
+            holaControl = true;
+        }
     }
 
     public void Brujula() {
-        evento++;
-        lucesCaldera.SetActive(true);
+        if (!brujulaControl)
+        {
+            evento++;
+            lucesCaldera.SetActive(true);
+            brujulaControl = true;
+        }
     }
 
 
     public void CombinarLlave()
     {
-        evento++;
-        puertaPiscina.SetActive(true);
+        if (!combinarControl)
+        {
+            evento++;
+            puertaPiscina.SetActive(true);
+            combinarControl = true;
+        }
     }
 
     public void Irse()
     {
-        evento++;
-        puertasAscensor.Play();
+        if (!irseControl)
+        {
+            evento++;
+            puertasAscensor.Play();
+            irseControl = true;
+        }
     }
 
 }

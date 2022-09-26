@@ -32,7 +32,7 @@ public class Dialogos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Input leer
         EmpezarLectura(true,false);
 
         //clic al leer 

@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     public string botonPrimeraPersona = "Fire2";//clic derecgho
     public string botonPausaInventario = "Cancel";//escape
     public string botonCorrer = "Fire3";//shift
+    public string botonAgacharse = "Crouch";//c
 
     private CharacterController player;
     private Vector3 playerMove;
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
     public bool pause;
     public bool dialog;
     public bool firstPerson;
+    public bool noInputs;
 
 
     private void Start()
@@ -58,6 +60,7 @@ public class PlayerController : MonoBehaviour
         colgando = false;
         dialog = false;
         firstPerson = false;
+        noInputs = false;
         state = 1;
         auxplayerSpeed = playerSpeed;
         auxfallSpeed = fallSpeed;
@@ -67,24 +70,33 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
 
-        MenuInputs();
-        InputFP();
-
-        if (!pause)
+        if (!noInputs)
         {
-            if (!firstPerson) {
-                InputMove();
-                camDirection();
-                Move();
-            }
-        }
-        /*else if (pause) {
-            if (dialog) {
 
+            MenuInputs();
+
+
+            if (!pause)
+            {
+                InputFP();
+                if (!firstPerson)
+                {
+                    InputMove();
+                    camDirection();
+                    Move();
+                    Crouch();
+                }
             }
-        }*/
+            /*else if (pause) {
+                if (dialog) {
+
+                }
+            }*/
+        }
     }
 
+
+    //INPUTS//
     //movimiento con arreglo diagonal
     private void InputMove() {
 
@@ -116,6 +128,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void InputFP() {
+
         if (Input.GetButtonDown(botonPrimeraPersona))
         {
             FirstPerson(true);
@@ -125,6 +138,35 @@ public class PlayerController : MonoBehaviour
             
 
     }
+
+    void isRunning()
+    {
+        if (running && state == 1 && Input.GetButtonDown("Fire3"))
+        {
+            running = false;
+            playerSpeed = playerWalkSpeed;
+        }
+        else if (!running && state == 1 && Input.GetButtonDown("Fire3"))
+        {
+            running = true;
+            playerSpeed = playerRunSpeed;
+        }
+    }
+
+    void Crouch() {
+
+        if (Input.GetButtonDown(botonAgacharse))
+        {
+            //playerAnimatorController.SetBool("Crouch",true);
+        }
+
+        if (Input.GetButtonUp(botonAgacharse)) {
+           // playerAnimatorController.SetBool("Crouch", true);
+        }
+
+    }
+    //INPUTS//
+
 
     public void ExitMenu() {
         PauseGame();
@@ -162,20 +204,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void isRunning() {
-        if (running && state==1 && Input.GetButtonDown("Fire3"))
-        {
-            running = false;
-            playerSpeed = playerWalkSpeed;
-        }
-        else if (!running && state == 1 && Input.GetButtonDown("Fire3"))
-        {
-            running = true;
-            playerSpeed = playerRunSpeed;
-        }
-    }
-
-
     private void Move()
     {
 
@@ -202,7 +230,8 @@ public class PlayerController : MonoBehaviour
         {
             if (playerInput.z > 0)
             {
-                playerAnimatorController.SetTrigger("playerClimb"); 
+                playerAnimatorController.SetTrigger("playerClimb");
+                noInputs = true;
             }
             else if (playerInput.z < 0)
             {
@@ -216,6 +245,7 @@ public class PlayerController : MonoBehaviour
     public void posClimb()
     {
         PlayerPosition(new Vector3(player.transform.position.x,ledge.endPos.y, player.transform.position.z) );
+        noInputs = false;
     }
 
     //direccion de la que mira la camara
@@ -276,32 +306,40 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Jump() {
-        //salto desde tierra
-        if (player.isGrounded && Input.GetButtonDown("Jump") && state!=2)
-        {
-            fallSpeed = jumpForce;
-            playerMove.y = fallSpeed;
-            playerAnimatorController.SetTrigger("playerJump");
+
+        if (Input.GetButtonDown("Jump")) {
+            //salto desde tierra
+            if (player.isGrounded && state != 2)
+            {
+                fallSpeed = jumpForce;
+                playerMove.y = fallSpeed;
+                playerAnimatorController.SetTrigger("playerJump");
+            }
+
+            ////agua respira saktasalta
+            if (state == 3)
+            {
+                fallSpeed = jumpForce;
+                playerMove.y = fallSpeed;
+                state = 0;
+                playerAnimatorController.SetBool("isSwimming", false);
+                playerAnimatorController.SetTrigger("playerJump");
+            }
+
+            ///agua no respira intenta subir
+            if (state == 2 )
+            {
+                fallSpeed += gravity * 3 * Time.deltaTime;
+                playerMove.y = fallSpeed;
+            }
         }
-        ////agua respira saktasalta
-        if (state == 3 && Input.GetButtonDown("Jump")) {
-            fallSpeed = jumpForce;
-            playerMove.y = fallSpeed;
-            state = 0;
-            playerAnimatorController.SetBool("isSwimming", false);
-            playerAnimatorController.SetTrigger("playerJump");
-        }
-        ///agua no respira intenta subir
-        if (state == 2 && Input.GetKey("space"))
-        {
-            fallSpeed += gravity*3*Time.deltaTime;
-            playerMove.y = fallSpeed;
-        }
+
         if (state == 2 && Input.GetKey("left shift"))
         {
             fallSpeed -= gravity *1.5f* Time.deltaTime;
             playerMove.y = fallSpeed;
         }
+
     }
 
     public void SetColgando(bool a, Collider other) {
@@ -362,7 +400,6 @@ public class PlayerController : MonoBehaviour
 
     public void ShowInventory() {
         InventoryManager.instance.Show();
-
     }
 
     public void HideInventory()
