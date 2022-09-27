@@ -35,6 +35,14 @@ public class PlayerController : MonoBehaviour
     private CharacterController player;
     private Vector3 playerMove;
 
+    [Header("CrouchValors")]
+    [SerializeField] private float crouchHeigh = 1f;
+    [SerializeField] private float auxHeigh = 1.8f;
+
+    public Vector3 crouchCenter;
+    public Vector3 auxCenter;
+
+
     [Header("Animaciones")]
     [SerializeField] private Animator playerAnimatorController;
 
@@ -155,18 +163,33 @@ public class PlayerController : MonoBehaviour
 
     void Crouch() {
 
-        if (Input.GetButtonDown(botonAgacharse))
+        if (Input.GetKeyDown(botonAgacharse))
         {
-            //playerAnimatorController.SetBool("Crouch",true);
+            playerAnimatorController.SetBool("Crouch",true);
+            CrouchHitboxOn();
         }
 
-        if (Input.GetButtonUp(botonAgacharse)) {
-           // playerAnimatorController.SetBool("Crouch", true);
+        if (Input.GetKeyUp(botonAgacharse))
+        {
+            playerAnimatorController.SetBool("Crouch", false);
+            CrouchHitboxOff();
         }
 
     }
     //INPUTS//
 
+    void CrouchHitboxOn() {
+        player.height = crouchHeigh;
+        Debug.Log(player.center);
+        player.center = crouchCenter;
+        Debug.Log(crouchCenter);
+    }
+
+    void CrouchHitboxOff()
+    {
+        player.height = auxHeigh;
+        player.center = auxCenter;
+    }
 
     public void ExitMenu() {
         PauseGame();
