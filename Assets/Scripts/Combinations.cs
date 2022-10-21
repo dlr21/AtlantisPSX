@@ -9,7 +9,7 @@ public class Combinations : MonoBehaviour
     [SerializeField] private Vector3 pos2;
 
     private bool pos1Full;
-    private bool pos2Full;
+    //private bool pos2Full;
 
     [SerializeField] private GameObject comb1;
     [SerializeField] private GameObject comb2;
@@ -27,7 +27,7 @@ public class Combinations : MonoBehaviour
     {
         cam = Camera.main;
         pos1Full = false;
-        pos2Full = false;
+        //pos2Full = false;
     }
 
 

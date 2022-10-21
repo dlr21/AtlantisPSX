@@ -13,6 +13,8 @@ public class AvanceLVL1 : MonoBehaviour
     public GameObject brujula;
 
     public GameObject ascensor;
+    public GameObject atril;
+
     public PlayableDirector puertasAscensor;
 
 
@@ -66,6 +68,7 @@ public class AvanceLVL1 : MonoBehaviour
         {
             evento++;
             puertasAscensor.Play();
+            atril.SetActive(true);
             irseControl = true;
         }
     }

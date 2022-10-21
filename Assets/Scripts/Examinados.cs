@@ -14,16 +14,12 @@ public class Examinados : MonoBehaviour
     public DeskKey desk;
     public Item keyPart;
 
-
+    [Header("Atril lvl1")]
+    public AtrilKey atril;
 
     public void lvl1_luz() {
         luz.switchOn();
         Debug.Log("encendemos luces");
-    }
-
-    public void lvl1_pasadizo()
-    {
-        Debug.Log("abrimos trampilla");
     }
 
     public void lvl1_puerta_piscina()
@@ -40,5 +36,10 @@ public class Examinados : MonoBehaviour
         Debug.Log("Recogiendo Llave de la mesa");
     }
 
+    public void lvl1_atril()
+    {
+        atril.Open();
+        Debug.Log("Abriendo trampilla");
+    }
 
 }

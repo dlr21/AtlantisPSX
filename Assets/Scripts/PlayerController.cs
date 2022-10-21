@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     public bool noInputs;
 
 
-    private void Start()
+    void Start()
     {
         player = GetComponent<CharacterController>();
         playerAnimatorController = GetComponent<Animator>();
@@ -75,14 +75,13 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void Update()
+    void Update()
     {
-
+        Debug.Log("update"+noInputs);
         if (!noInputs)
         {
-
+            Debug.Log("noinput de update");
             MenuInputs();
-
 
             if (!pause)
             {
@@ -176,8 +175,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    //INPUTS//
-
+ 
     void CrouchHitboxOn() {
         player.height = crouchHeigh;
         Debug.Log(player.center);
@@ -240,7 +238,7 @@ public class PlayerController : MonoBehaviour
         player.Move(playerMove * Time.deltaTime);
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         Climb();
     }
@@ -269,6 +267,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerPosition(new Vector3(player.transform.position.x,ledge.endPos.y, player.transform.position.z) );
         noInputs = false;
+        Debug.Log("PONER EN FALSO");
     }
 
     //direccion de la que mira la camara
@@ -324,20 +323,23 @@ public class PlayerController : MonoBehaviour
             //animacion de que hacemos segun la velocidad en el aire
             playerAnimatorController.SetFloat("playerVerticalVelocity", player.velocity.y);
         }
+
         playerAnimatorController.SetBool("colgando", colgando);
         playerAnimatorController.SetBool("isGrounded", player.isGrounded);
+        
     }
+
 
     private void Jump() {
 
-        if (Input.GetButtonDown("Jump")) {
-            //salto desde tierra
-            if (player.isGrounded && state != 2)
-            {
-                fallSpeed = jumpForce;
-                playerMove.y = fallSpeed;
-                playerAnimatorController.SetTrigger("playerJump");
-            }
+        if (Input.GetButtonDown("Jump")) { 
+                //salto desde tierra
+                if (player.isGrounded && state != 2)
+                {
+                    fallSpeed = jumpForce;
+                    playerMove.y = fallSpeed;
+                    playerAnimatorController.SetTrigger("playerJump");
+                }
 
             ////agua respira saktasalta
             if (state == 3)
@@ -350,13 +352,13 @@ public class PlayerController : MonoBehaviour
             }
 
             ///agua no respira intenta subir
-            if (state == 2 )
+            if (state == 2)
             {
                 fallSpeed += gravity * 3 * Time.deltaTime;
                 playerMove.y = fallSpeed;
             }
         }
-
+        ///agua no respira intenta bajar
         if (state == 2 && Input.GetKey("left shift"))
         {
             fallSpeed -= gravity *1.5f* Time.deltaTime;
