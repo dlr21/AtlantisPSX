@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour
     public string botonPrimeraPersona = "Fire2";//clic derecgho
     public string botonPausaInventario = "Cancel";//escape
     public string botonCorrer = "Fire3";//shift
-    public string botonAgacharse = "Crouch";//c
+    public string botonAgacharse = "Crouch";//c key
+    public string botonSalto = "Jump";//espacio
 
     private CharacterController player;
     private Vector3 playerMove;
@@ -57,7 +58,9 @@ public class PlayerController : MonoBehaviour
     public bool pause;
     public bool dialog;
     public bool firstPerson;
-    public bool noInputs;
+    public bool crouch;
+    
+    private bool noInputs { get; set; }
 
 
     void Start()
@@ -77,130 +80,159 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("update"+noInputs);
-        if (!noInputs)
-        {
-            Debug.Log("noinput de update");
-            MenuInputs();
-
-            if (!pause)
-            {
-                InputFP();
-                if (!firstPerson)
-                {
-                    InputMove();
-                    camDirection();
-                    Move();
-                    Crouch();
-                }
+         MenuInputs();
+         if (!pause)
+         {
+             InputFP();
+             if (!firstPerson)
+             {
+                 InputMove();
+                 camDirection();
+                 Move();
+                 Climb();
             }
-            /*else if (pause) {
-                if (dialog) {
+         }
+         /*else if (pause) {
+             if (dialog) {
 
-                }
-            }*/
-        }
+             }
+         }*/
     }
 
 
     //INPUTS//
     //movimiento con arreglo diagonal
     private void InputMove() {
-
-        isRunning();
-
-        horizontalMove = Input.GetAxis("Horizontal");
-        verticalMove = Input.GetAxis("Vertical");
-
-        playerInput = new Vector3(horizontalMove, 0, verticalMove);
-        playerInput = Vector3.ClampMagnitude(playerInput, 1);
-
-        //animacion de que hacemos segun la velocidad
-        playerAnimatorController.SetFloat("playerWalkVelocity", playerInput.magnitude * playerSpeed);
-    }
-
-    private void MenuInputs()
-    {
-        
-        if (Input.GetButtonDown(botonPausaInventario) && pause)//salir de pausa
+        if (!noInputs)
         {
-            ExitMenu();
-        }else if (Input.GetButtonDown(botonPausaInventario) && !pause)//entrar en pausa
-        {
-            PauseGame();
-            pause = true;
-            ShowInventory();
+            isRunning();
+
+            horizontalMove = Input.GetAxis("Horizontal");
+            verticalMove = Input.GetAxis("Vertical");
+
+            playerInput = new Vector3(horizontalMove, 0, verticalMove);
+            playerInput = Vector3.ClampMagnitude(playerInput, 1);
+
+            //animacion de que hacemos segun la velocidad
+            playerAnimatorController.SetFloat("playerWalkVelocity", playerInput.magnitude * playerSpeed);
         }
-
     }
-
-    private void InputFP() {
-
-        if (Input.GetButtonDown(botonPrimeraPersona))
-        {
-            FirstPerson(true);
-        }else if(Input.GetButtonUp(botonPrimeraPersona)){
-            FirstPerson(false);
-        }
-            
-
-    }
-
     void isRunning()
     {
-        if (running && state == 1 && Input.GetButtonDown("Fire3"))
+        if (Input.GetButtonDown("Fire3"))
         {
-            running = false;
-            playerSpeed = playerWalkSpeed;
-        }
-        else if (!running && state == 1 && Input.GetButtonDown("Fire3"))
-        {
-            running = true;
-            playerSpeed = playerRunSpeed;
+            if (running && state == 1)
+            {
+                running = false;
+                playerSpeed = playerWalkSpeed;
+            }
+            else if (!running && state == 1)
+            {
+                running = true;
+                playerSpeed = playerRunSpeed;
+            }
         }
     }
-
-    void Crouch() {
-
-        if (Input.GetKeyDown(botonAgacharse))
-        {
-            playerAnimatorController.SetBool("Crouch",true);
-            CrouchHitboxOn();
+    //menu inventario/pausa
+    private void MenuInputs()
+    {
+        Debug.Log(noInputs);
+        if (!noInputs) { 
+            if (Input.GetButtonDown(botonPausaInventario) && pause)//salir de pausa
+            {
+                ExitMenu();
+            }
+            else if (Input.GetButtonDown(botonPausaInventario) && !pause)//entrar en pausa
+            {
+                PauseGame();
+                pause = true;
+                ShowInventory();
+            }
         }
-
-        if (Input.GetKeyUp(botonAgacharse))
+    }
+    public void ExitMenu()
+    {
+        PauseGame();
+        pause = false;
+        HideInventory();
+    }
+    //observar primera persona
+    private void InputFP()
+    {
+        if (!noInputs) { 
+            if (Input.GetButtonDown(botonPrimeraPersona))
+            {
+                FirstPerson(true);
+            }
+            else if (Input.GetButtonUp(botonPrimeraPersona))
+            {
+                FirstPerson(false);
+            }
+        }
+    }
+    public void FirstPerson(bool f)
+    {
+        if (f)
         {
-            playerAnimatorController.SetBool("Crouch", false);
-            CrouchHitboxOff();
+            firstPerson = true;
+            //DESACTIVAR HUD
+            fpScript.Reset();
+            cam.gameObject.SetActive(false);
+            fpCam.gameObject.SetActive(true);
+
+        }
+        else
+        {
+            firstPerson = false;
+            //ACTIVAR HUD
+            fpScript.Reset();
+            fpCam.gameObject.SetActive(false);
+            cam.gameObject.SetActive(true);
+
         }
 
     }
- 
+    //agacharse
+    void Crouch()
+    {
+        if (!noInputs || crouch) { 
+            if (Input.GetKeyDown(botonAgacharse) && state==1)
+            {
+                StopMoving();
+                playerAnimatorController.SetBool("Crouch", true);
+                CrouchHitboxOn();
+                crouch = true;
+                noInputs = true;
+            }
+
+            if (Input.GetKeyUp(botonAgacharse) && state == 1)
+            {
+                playerAnimatorController.SetBool("Crouch", false);
+                CrouchHitboxOff();
+                crouch = false;
+                noInputs = false;
+                StartMoving();
+            }
+        }
+    }
     void CrouchHitboxOn() {
         player.height = crouchHeigh;
         Debug.Log(player.center);
         player.center = crouchCenter;
         Debug.Log(crouchCenter);
     }
-
     void CrouchHitboxOff()
     {
         player.height = auxHeigh;
         player.center = auxCenter;
     }
-
-    public void ExitMenu() {
-        PauseGame();
-        pause = false;
-        HideInventory();
-    }
-
+    //salir del menu al usar un objeto/llave
     public void UsedKey() {
         PauseGame();
         pause = false;
         HideInventory();
     }
-
+    //parar y mirar al interactuar con dialogo
     public void Dialog(Vector3 npc) {
         if (!pause)
         {
@@ -212,7 +244,7 @@ public class PlayerController : MonoBehaviour
             pause = false;
         }
     }
-
+    //time scale 0 1
     void PauseGame()
     {
         if (pause)
@@ -224,35 +256,17 @@ public class PlayerController : MonoBehaviour
             Time.timeScale = 0;
         }
     }
+    //escalada desde ledge
 
-    private void Move()
+    private void Climb()
     {
-
-        //movimiento en referencia a la camara
-        playerMove = (playerInput.x * camRight + playerInput.z * camForward) * playerSpeed;
-        //mover personaje a donde mire
-        player.transform.LookAt(player.transform.position + playerMove);
-
-        MovimientoEjeY();
-
-        player.Move(playerMove * Time.deltaTime);
-    }
-
-    void FixedUpdate()
-    {
-        Climb();
-    }
-
-    public void CallMeWithWait() { }
-
-    private void  Climb(){
 
         if (colgando)
         {
             if (playerInput.z > 0)
             {
-                playerAnimatorController.SetTrigger("playerClimb");
                 noInputs = true;
+                playerAnimatorController.SetTrigger("playerClimb");
             }
             else if (playerInput.z < 0)
             {
@@ -262,13 +276,13 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
     public void posClimb()
     {
-        PlayerPosition(new Vector3(player.transform.position.x,ledge.endPos.y, player.transform.position.z) );
+        PlayerPosition(new Vector3(player.transform.position.x, ledge.endPos.y, player.transform.position.z));
         noInputs = false;
-        Debug.Log("PONER EN FALSO");
     }
+
+    public void CallMeWithWait() { }
 
     //direccion de la que mira la camara
     private void camDirection()
@@ -282,17 +296,25 @@ public class PlayerController : MonoBehaviour
         camForward = camForward.normalized;
         camRight = camRight.normalized;
     }
+    //movimiento horizontal y vertical
+    private void Move()
+    {
+        //movimiento en referencia a la camara
+        playerMove = (playerInput.x * camRight + playerInput.z * camForward) * playerSpeed;
+        //mover personaje a donde mire
+        player.transform.LookAt(player.transform.position + playerMove);
 
-    //aqui para no obstaculizar el look up y no ser borrado por los inputs
+        MovimientoEjeY();
+
+        player.Move(playerMove * Time.deltaTime);
+    }
     private void MovimientoEjeY()
     {
         SetGravity();
         Jump();
+        Crouch();
     }
-
-    //fuerza hacia abajo estando en el suelo y aceleracion de gravedad estando en el aire
     private void SetGravity() {
-
 
         if (colgando)//ledge
         {
@@ -328,18 +350,16 @@ public class PlayerController : MonoBehaviour
         playerAnimatorController.SetBool("isGrounded", player.isGrounded);
         
     }
-
-
     private void Jump() {
 
-        if (Input.GetButtonDown("Jump")) { 
-                //salto desde tierra
-                if (player.isGrounded && state != 2)
-                {
-                    fallSpeed = jumpForce;
-                    playerMove.y = fallSpeed;
-                    playerAnimatorController.SetTrigger("playerJump");
-                }
+        if (Input.GetButtonDown(botonSalto) && !noInputs) {
+            //salto desde tierra
+            if (player.isGrounded && state != 2)
+            {
+                fallSpeed = jumpForce;
+                playerMove.y = fallSpeed;
+                playerAnimatorController.SetTrigger("playerJump");
+            }
 
             ////agua respira saktasalta
             if (state == 3)
@@ -350,23 +370,23 @@ public class PlayerController : MonoBehaviour
                 playerAnimatorController.SetBool("isSwimming", false);
                 playerAnimatorController.SetTrigger("playerJump");
             }
-
-            ///agua no respira intenta subir
-            if (state == 2)
-            {
-                fallSpeed += gravity * 3 * Time.deltaTime;
-                playerMove.y = fallSpeed;
-            }
         }
-        ///agua no respira intenta bajar
-        if (state == 2 && Input.GetKey("left shift"))
+        ///agua no respira intenta subir
+        if (state == 2 && Input.GetButton(botonSalto))
         {
-            fallSpeed -= gravity *1.5f* Time.deltaTime;
+            fallSpeed += gravity * 3 * Time.deltaTime;
+            playerMove.y = fallSpeed;
+        }
+        
+        ///agua no respira intenta bajar
+        if (state == 2 && Input.GetKey(botonAgacharse))
+        {
+            fallSpeed -= gravity *1.2f* Time.deltaTime;
             playerMove.y = fallSpeed;
         }
 
     }
-
+    //colgar de un borde
     public void SetColgando(bool a, Collider other) {
         colgando = a;
         if (colgando)
@@ -379,17 +399,15 @@ public class PlayerController : MonoBehaviour
             StartMoving();
         }
     }
-
     public void StopMoving() {
         playerSpeed = 0;
         fallSpeed = 0;
     }
-
     public void StartMoving() {
         playerSpeed = auxplayerSpeed;
         fallSpeed = auxfallSpeed;
     }
-
+    //mirar a un target
     public void PlayerLooks(Transform target) {
         transform.forward = -target.forward;
     }
@@ -403,7 +421,7 @@ public class PlayerController : MonoBehaviour
     {
         transform.position =  newPos;
     }
-
+    //estado del jugador, tocando suelo en el agua etc
     public void playerState(string estado)
     {
 
@@ -422,36 +440,16 @@ public class PlayerController : MonoBehaviour
             state = 3;
         }
     }
-
+    //inventario
     public void ShowInventory() {
         InventoryManager.instance.Show();
     }
-
     public void HideInventory()
     {
         InventoryManager.instance.Hide();
     }
 
-    public void FirstPerson(bool f){
-        if (f)
-        {
-            firstPerson = true;
-            //DESACTIVAR HUD
-            fpScript.Reset();
-            cam.gameObject.SetActive(false);
-            fpCam.gameObject.SetActive(true);
-
-        }
-        else {
-            firstPerson = false;
-            //ACTIVAR HUD
-            fpScript.Reset();
-            fpCam.gameObject.SetActive(false);
-            cam.gameObject.SetActive(true);
-
-        }
-
-    }
+   
 
 
 

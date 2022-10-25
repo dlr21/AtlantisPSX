@@ -30,7 +30,10 @@ public class AvanceLVL1 : MonoBehaviour
 
 
     public void Activa() {
-        if(evento < events.Length)events[evento].Invoke();
+        if (evento < events.Length) {
+            events[evento].Invoke();
+            Debug.Log(evento);
+        }
     }
 
     public void Hola()
