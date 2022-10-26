@@ -136,7 +136,6 @@ public class PlayerController : MonoBehaviour
     //menu inventario/pausa
     private void MenuInputs()
     {
-        Debug.Log(noInputs);
         if (!noInputs) { 
             if (Input.GetButtonDown(botonPausaInventario) && pause)//salir de pausa
             {
