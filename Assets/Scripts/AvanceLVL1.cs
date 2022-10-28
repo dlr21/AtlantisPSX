@@ -32,7 +32,7 @@ public class AvanceLVL1 : MonoBehaviour
     public void Activa() {
         if (evento < events.Length) {
             events[evento].Invoke();
-            Debug.Log(evento);
+            Debug.Log("evento "+evento);
         }
     }
 
@@ -65,13 +65,17 @@ public class AvanceLVL1 : MonoBehaviour
         }
     }
 
+    public void eventoMASMAS() {
+        evento++;
+    }
+
     public void Irse()
     {
         if (!irseControl)
         {
             evento++;
             puertasAscensor.Play();
-            atril.SetActive(true);
+            atril.GetComponent<BoxCollider>().enabled = true;
             irseControl = true;
         }
     }

@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
     public bool firstPerson;
     public bool crouch;
     
+    
     private bool noInputs { get; set; }
 
 
@@ -136,7 +137,7 @@ public class PlayerController : MonoBehaviour
     //menu inventario/pausa
     private void MenuInputs()
     {
-        if (!noInputs) { 
+        if (!noInputs && !dialog) { 
             if (Input.GetButtonDown(botonPausaInventario) && pause)//salir de pausa
             {
                 ExitMenu();
@@ -235,11 +236,13 @@ public class PlayerController : MonoBehaviour
     public void Dialog(Vector3 npc) {
         if (!pause)
         {
+            dialog = true;
             transform.LookAt(npc+new Vector3(0,transform.position.y,0));
             pause = true;
             playerAnimatorController.SetFloat("playerWalkVelocity", 0);
         }
         else if (pause) {
+            dialog = false;
             pause = false;
         }
     }
@@ -448,8 +451,10 @@ public class PlayerController : MonoBehaviour
         InventoryManager.instance.Hide();
     }
 
-   
 
+    public void setDialog(bool a) {
+        dialog = a;
+    }
 
 
 
