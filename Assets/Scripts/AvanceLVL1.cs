@@ -27,6 +27,7 @@ public class AvanceLVL1 : MonoBehaviour
     public bool brujulaControl;
     public bool combinarControl;
     public bool irseControl;
+    public bool puertaControl;
 
 
     public void Activa() {
@@ -60,8 +61,16 @@ public class AvanceLVL1 : MonoBehaviour
         if (!combinarControl)
         {
             evento++;
-            puertaPiscina.SetActive(true);
             combinarControl = true;
+        }
+    }
+
+    public void activarPuerta() {
+        if (!puertaControl)
+        {
+            evento++;
+            puertaPiscina.SetActive(true);
+            puertaControl = true;
         }
     }
 

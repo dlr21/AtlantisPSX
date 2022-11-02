@@ -110,7 +110,13 @@ public class Item : ScriptableObject
         }
         else if (id == 5) //oldkey//pool_lvl1
         {
-            GameObject.Find("ExaminarPuerta").GetComponent<PoolDoor>().AbrirPuerta();
+            if (GameObject.Find("ExaminarPuerta").activeInHierarchy)
+            {
+                GameObject.Find("ExaminarPuerta").GetComponent<PoolDoor>().AbrirPuerta();
+            }
+            else {
+                Debug.Log("Deberia hablar con el señor Whitmore");
+            }
         }
         else
         {

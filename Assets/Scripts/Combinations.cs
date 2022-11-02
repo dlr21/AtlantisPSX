@@ -42,7 +42,8 @@ public class Combinations : MonoBehaviour
 
     }
 
-    public void Combines(Item g) {
+    public bool Combines(Item g) {
+        bool combine = false;
         if (!pos1Full)
         {
             comb1=Instantiate(g.icon, pos1, Camera.main.transform.rotation);
@@ -55,7 +56,8 @@ public class Combinations : MonoBehaviour
             comb2 = Instantiate(g.icon, pos2, Camera.main.transform.rotation);
 
             if (IntentaCombinar())
-            {   
+            {
+                combine= true;
                 Debug.Log("AnimacionCombinar");
             }
             else
@@ -68,7 +70,7 @@ public class Combinations : MonoBehaviour
         else {
             Debug.Log("Error burro");
         }
-
+        return combine;
     }
 
     bool IntentaCombinar() {
